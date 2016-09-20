@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Getting-started-rsses on melodyAPI documentation</title>
+    <link>https://melody-api.github.io/docs/getting-started/index.xml</link>
+    <description>Recent content in Getting-started-rsses on melodyAPI documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>melodyAPI docs</copyright>
+    <lastBuildDate>Wed, 09 Mar 2016 00:11:02 +0100</lastBuildDate>
+    <atom:link href="https://melody-api.github.io/docs/getting-started/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Getting started</title>
+      <link>https://melody-api.github.io/docs/getting-started/</link>
+      <pubDate>Wed, 09 Mar 2016 00:11:02 +0100</pubDate>
+      
+      <guid>https://melody-api.github.io/docs/getting-started/</guid>
+      <description>
+
+&lt;h2 id=&#34;endpoint&#34;&gt;Endpoint&lt;/h2&gt;
+
+&lt;p&gt;melodyAPI is available for developer preview at the following endpoint:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;https://api.melody.sh/graphql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;issuing-queries&#34;&gt;Issuing queries&lt;/h2&gt;
+
+&lt;p&gt;The handler will accept requests with the parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;query&lt;/code&gt;: A required string GraphQL document to be executed.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;variables&lt;/code&gt;: JSON object of values to use for any GraphQL query variables.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;operationName&lt;/code&gt;: The operation to run if query contains more than one query.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These variables can be specified either via a query-string, or the POST body:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/graphql?query=query+getPkg($n:String!){package(name:$n){name}}&amp;amp;variables={&amp;quot;n&amp;quot;:&amp;quot;github.com/urfave/cli&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A POST body will be processed based on the incoming &lt;code&gt;Content-Type&lt;/code&gt; header:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;application/json&lt;/code&gt;: Body will be parsed as a JSON object.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;application/graphql&lt;/code&gt;: Body will be used as the &lt;code&gt;query&lt;/code&gt; parameter with other parameters undefined.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;application/x-www-form-urlencoded&lt;/code&gt;: Body will be parsed as a URL-encoded string of key-value pairs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;parsing-responses&#34;&gt;Parsing responses&lt;/h2&gt;
+
+&lt;p&gt;melodyAPI will return query results in JSON format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;package&amp;quot;: {
+      &amp;quot;name&amp;quot;: &amp;quot;github.com/urfave/cli&amp;quot;
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

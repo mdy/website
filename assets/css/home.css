@@ -1,0 +1,41 @@
+body {
+  padding: 0 !important;
+  margin: 0 !important; }
+
+.demo-results {
+  margin-top: 30px; }
+  .demo-results pre, .demo-results code {
+    word-wrap: normal;
+    white-space: pre;
+    text-align: left;
+    font-size: 12px;
+    overflow: auto; }
+  .demo-results pre {
+    padding: 7px;
+    background-color: #000;
+    max-height: 777px;
+    color: #FFF; }
+  .demo-results .query-runtime {
+    font-size: 14px;
+    color: #EEE;
+    text-align: right;
+    position: absolute;
+    top: 33px;
+    right: 29px; }
+
+section.features h1, section.features h2, section.features h3, section.features h4 {
+  color: white; }
+
+section .btns .input-lg {
+  height: 43px; }
+
+section .btns .btn {
+  color: white; }
+  section .btns .btn i.fa {
+    margin: 0 -8px;
+    color: #2a435c; }
+
+@media (min-width: 768px) {
+  .form-inline .form-control {
+    width: 100%;
+    max-width: 280px; } }

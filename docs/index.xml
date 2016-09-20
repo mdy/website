@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>melodyAPI documentation</title>
+    <link>https://melody-api.github.io/docs/index.xml</link>
+    <description>Recent content on melodyAPI documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>melodyAPI docs</copyright>
+    <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
+    <atom:link href="https://melody-api.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://melody-api.github.io/docs/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody-api.github.io/docs/</guid>
+      <description>
+
+
+&lt;figure class=&#34;xkcd-compiling&#34;&gt;
+    
+        &lt;img src=&#34;https://imgs.xkcd.com/comics/compiling.png&#34; alt=&#34;Compiling&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        
+        &lt;a href=&#34;http://xkcd.com/303/&#34;&gt; 
+            XKCD
+        &lt;/a&gt; 
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;melodyAPI is a backend platform that can save you hours of work and wait by
+caching Go repositories and preprocessing common analysis tasks to expose
+underlying metadata via a GraphQL API.  By caching much of this data,
+checking for repository updates or listing package dependencies take a few
+milliseconds instead of seconds or minutes.  When queried multiple times per
+day over multiple packages and repositories, this can accumulate into hours
+of saved time for you.&lt;/p&gt;
+
+&lt;h2 id=&#34;why-graphql&#34;&gt;Why GraphQL?&lt;/h2&gt;
+
+&lt;p&gt;We chose GraphQL to give us greater flexibility in how metadata is structured
+while giving clients more flexibility in how it&amp;rsquo;s queried:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Strongly-typed system helps create clean, structured, and safe APIs.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Client-specified queries with field-level granularity help choose the perfect
+complexity/performance balance for each query.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;A healthy ecosystem of tools &amp;amp; libraries can easily be taylored to this API
+by quering the type system via GraphQL itself.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Deprecation support allows us to evolve the API while keeping backward
+compatibility.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;GraphQL is great &amp;ndash; learn more about &lt;a href=&#34;http://graphql.org&#34;&gt;GraphQL&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;project-status&#34;&gt;Project Status&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Early Preview&lt;/strong&gt; &amp;ndash; melodyAPI is not just another academic exercise; it
+grew out of an in-house project that serves real development needs, and we will
+continue active development to make it more useful for our team, and now to
+the greater developer community.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Getting started</title>
+      <link>https://melody-api.github.io/docs/getting-started/</link>
+      <pubDate>Wed, 09 Mar 2016 00:11:02 +0100</pubDate>
+      
+      <guid>https://melody-api.github.io/docs/getting-started/</guid>
+      <description>
+
+&lt;h2 id=&#34;endpoint&#34;&gt;Endpoint&lt;/h2&gt;
+
+&lt;p&gt;melodyAPI is available for developer preview at the following endpoint:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;https://api.melody.sh/graphql
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;issuing-queries&#34;&gt;Issuing queries&lt;/h2&gt;
+
+&lt;p&gt;The handler will accept requests with the parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;query&lt;/code&gt;: A required string GraphQL document to be executed.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;variables&lt;/code&gt;: JSON object of values to use for any GraphQL query variables.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;operationName&lt;/code&gt;: The operation to run if query contains more than one query.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;These variables can be specified either via a query-string, or the POST body:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/graphql?query=query+getPkg($n:String!){package(name:$n){name}}&amp;amp;variables={&amp;quot;n&amp;quot;:&amp;quot;github.com/urfave/cli&amp;quot;}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A POST body will be processed based on the incoming &lt;code&gt;Content-Type&lt;/code&gt; header:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;application/json&lt;/code&gt;: Body will be parsed as a JSON object.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;application/graphql&lt;/code&gt;: Body will be used as the &lt;code&gt;query&lt;/code&gt; parameter with other parameters undefined.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;application/x-www-form-urlencoded&lt;/code&gt;: Body will be parsed as a URL-encoded string of key-value pairs.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;parsing-responses&#34;&gt;Parsing responses&lt;/h2&gt;
+
+&lt;p&gt;melodyAPI will return query results in JSON format:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
+  &amp;quot;data&amp;quot;: {
+    &amp;quot;package&amp;quot;: {
+      &amp;quot;name&amp;quot;: &amp;quot;github.com/urfave/cli&amp;quot;
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>GraphQL Queries</title>
+      <link>https://melody-api.github.io/docs/reference/</link>
+      <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://melody-api.github.io/docs/reference/</guid>
+      <description>
+
+&lt;p&gt;The following is the only root query available via our endpoint:&lt;/p&gt;
+
+&lt;h3 id=&#34;package-package-objects-package&#34;&gt;package (&lt;a href=&#34;objects#Package&#34;&gt;Package&lt;/a&gt;)&lt;/h3&gt;
+
+&lt;p&gt;Naturally, you query all package information by starting with a package name&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Argument&lt;/th&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;name&lt;/td&gt;
+&lt;td&gt;String!&lt;/td&gt;
+&lt;td&gt;Name of the package&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;div class=&#34;admonition note&#34;&gt;
+&lt;p class=&#34;admonition-title&#34;&gt;Package names&lt;/p&gt;
+&lt;p&gt;Please note that melodyAPI indexes packages by the name that you use in your &amp;ldquo;import&amp;rdquo;
+statements, not the path to the repo.  If a repository has no top-level package or
+it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package name will return a not-found error.&lt;/p&gt;
+&lt;/div&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>GraphQL Objects</title>
+      <link>https://melody-api.github.io/docs/reference/objects/</link>
+      <pubDate>Thu, 15 Sep 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://melody-api.github.io/docs/reference/objects/</guid>
+      <description>
+
+&lt;h2 id=&#34;Dependency&#34;&gt;Dependency&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Dependency {
+  name: String
+  scope: DependencyScope
+  versionRange: String
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;fields&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;name-string&#34;&gt;name (String)&lt;/h4&gt;
+
+&lt;p&gt;Name of the package specified by the &lt;code&gt;import&lt;/code&gt; statement&lt;/p&gt;
+
+&lt;h4 id=&#34;scope-dependencyscope-enums-dependencyscope&#34;&gt;scope (&lt;a href=&#34;../enums#DependencyScope&#34;&gt;DependencyScope&lt;/a&gt;)&lt;/h4&gt;
+
+&lt;p&gt;&amp;ldquo;BUILD&amp;rdquo; or &amp;ldquo;TEST&amp;rdquo; corresponding to &lt;code&gt;Imports&lt;/code&gt; vs. &lt;code&gt;TestImports&lt;/code&gt;&lt;/p&gt;
+
+&lt;h4 id=&#34;versionrange-string&#34;&gt;versionRange (String)&lt;/h4&gt;
+
+&lt;p&gt;Reserved for future use&lt;/p&gt;
+
+&lt;h2 id=&#34;DependencyConnection&#34;&gt;DependencyConnection&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type DependencyConnection {
+  edges: [DependencyEdge]
+  pageInfo: PageInfo!
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;A connection to a list of dependencies.&lt;/p&gt;
+
+&lt;h3 id=&#34;fields-1&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;edges-dependencyedge-dependencyedge&#34;&gt;edges ([&lt;a href=&#34;#DependencyEdge&#34;&gt;DependencyEdge&lt;/a&gt;])&lt;/h4&gt;
+
+&lt;p&gt;Edges connecting to the listed Dependency nodes&lt;/p&gt;
+
+&lt;h4 id=&#34;pageinfo-pageinfo-pageinfo&#34;&gt;pageInfo (&lt;a href=&#34;#PageInfo&#34;&gt;PageInfo&lt;/a&gt;!)&lt;/h4&gt;
+
+&lt;p&gt;Pagination metadata for this connection&lt;/p&gt;
+
+&lt;h2 id=&#34;DependencyEdge&#34;&gt;DependencyEdge&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type DependencyEdge {
+  node: Dependency
+  cursor: String!
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;An edge in a Dependency connection&lt;/p&gt;
+
+&lt;h3 id=&#34;fields-2&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;cursor-string&#34;&gt;cursor (String!)&lt;/h4&gt;
+
+&lt;p&gt;Pagination cursor&lt;/p&gt;
+
+&lt;h4 id=&#34;node-dependency-dependency&#34;&gt;node (&lt;a href=&#34;#Dependency&#34;&gt;Dependency&lt;/a&gt;)&lt;/h4&gt;
+
+&lt;p&gt;Dependency object connected by this edge&lt;/p&gt;
+
+&lt;h2 id=&#34;Package&#34;&gt;Package&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Package {
+  name: String
+  version(version: String, revision: String): Version
+  versions(first: Int, last: Int, before: String, after: String): VersionConnection
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;fields-3&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;name-string-1&#34;&gt;name (String)&lt;/h4&gt;
+
+&lt;p&gt;Package name as specified in the &lt;code&gt;import&lt;/code&gt; statement&lt;/p&gt;
+
+&lt;h4 id=&#34;version-version-version&#34;&gt;version (&lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt;)&lt;/h4&gt;
+
+&lt;p&gt;Query for a specific version by either the Semantic Version number, or by the revision ID of the repository.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Argument&lt;/th&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;revision&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;Find by repo revision&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;version&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;Find by version number&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h4 id=&#34;versions-versionconnection-versionconnection&#34;&gt;versions (&lt;a href=&#34;#VersionConnection&#34;&gt;VersionConnection&lt;/a&gt;)&lt;/h4&gt;
+
+&lt;p&gt;List all tagged and latest auto-generated versions of this package.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Argument&lt;/th&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;before&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;Cursor for pagination&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;after&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;Cursor for pagination&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;first&lt;/td&gt;
+&lt;td&gt;Int&lt;/td&gt;
+&lt;td&gt;Page size&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;last&lt;/td&gt;
+&lt;td&gt;Int&lt;/td&gt;
+&lt;td&gt;Page size&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;PageInfo&#34;&gt;PageInfo&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Information about pagination in a connection.&lt;/p&gt;
+
+&lt;h3 id=&#34;fields-4&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;hasnextpage-boolean&#34;&gt;hasNextPage (Boolean!)&lt;/h4&gt;
+
+&lt;p&gt;Next page available&lt;/p&gt;
+
+&lt;h4 id=&#34;haspreviouspage-boolean&#34;&gt;hasPreviousPage (Boolean!)&lt;/h4&gt;
+
+&lt;p&gt;Previous page available&lt;/p&gt;
+
+&lt;h4 id=&#34;startcursor-string&#34;&gt;startCursor (String)&lt;/h4&gt;
+
+&lt;p&gt;Cursor for first item of this page&lt;/p&gt;
+
+&lt;h4 id=&#34;endcursor-string&#34;&gt;endCursor (String)&lt;/h4&gt;
+
+&lt;p&gt;Cursor for last item of this page&lt;/p&gt;
+
+&lt;h2 id=&#34;Release&#34;&gt;Release&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Release {
+  name: String
+  version: String
+  url: String
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;fields-5&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;name-string-2&#34;&gt;name (String)&lt;/h4&gt;
+
+&lt;p&gt;Name of the repository from which the package was extracted&lt;/p&gt;
+
+&lt;h4 id=&#34;version-string&#34;&gt;version (String)&lt;/h4&gt;
+
+&lt;p&gt;Convenience accessor to the parent &lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt; version&lt;/p&gt;
+
+&lt;h4 id=&#34;url-string&#34;&gt;url (String)&lt;/h4&gt;
+
+&lt;p&gt;Link to download an archive of this release in &lt;strong&gt;tgz&lt;/strong&gt; form&lt;/p&gt;
+
+&lt;h2 id=&#34;Version&#34;&gt;Version&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Version {
+  name: String
+  version: String
+  release: Release
+  dependencies(after: String, first: Int, last: Int, before: String): DependencyConnection
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;fields-6&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;name-string-3&#34;&gt;name (String)&lt;/h4&gt;
+
+&lt;p&gt;Convenience accessor to the parent &lt;a href=&#34;#Package&#34;&gt;Package&lt;/a&gt; name&lt;/p&gt;
+
+&lt;h4 id=&#34;version-string-1&#34;&gt;version (String)&lt;/h4&gt;
+
+&lt;p&gt;Semantic version derrived from repository tags and history&lt;/p&gt;
+
+&lt;h4 id=&#34;release-release-release&#34;&gt;release (&lt;a href=&#34;#Release&#34;&gt;Release&lt;/a&gt;)&lt;/h4&gt;
+
+&lt;p&gt;Details about the archive needed to install this package&lt;/p&gt;
+
+&lt;h4 id=&#34;dependencies-dependencyconnection-dependencyconnection&#34;&gt;dependencies (&lt;a href=&#34;#DependencyConnection&#34;&gt;DependencyConnection&lt;/a&gt;)&lt;/h4&gt;
+
+&lt;p&gt;A RelayConnection to a list of dependencies that are imported by this version.&lt;/p&gt;
+
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Argument&lt;/th&gt;
+&lt;th&gt;Type&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;before&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;Cursor for pagination&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;after&lt;/td&gt;
+&lt;td&gt;String&lt;/td&gt;
+&lt;td&gt;Cursor for pagination&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;first&lt;/td&gt;
+&lt;td&gt;Int&lt;/td&gt;
+&lt;td&gt;Page size&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td&gt;last&lt;/td&gt;
+&lt;td&gt;Int&lt;/td&gt;
+&lt;td&gt;Page size&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h2 id=&#34;VersionConnection&#34;&gt;VersionConnection&lt;/h2&gt;
+
+&lt;p&gt;A connection to a list of items.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type VersionConnection {
+  pageInfo: PageInfo!
+  edges: [VersionEdge]
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;fields-7&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;edges-versionedge-versionedge&#34;&gt;edges ([&lt;a href=&#34;#VersionEdge&#34;&gt;VersionEdge&lt;/a&gt;])&lt;/h4&gt;
+
+&lt;p&gt;Edges connecting to the listed Version nodes&lt;/p&gt;
+
+&lt;h4 id=&#34;pageinfo-pageinfo-pageinfo-1&#34;&gt;pageInfo (&lt;a href=&#34;#PageInfo&#34;&gt;PageInfo&lt;/a&gt;!)&lt;/h4&gt;
+
+&lt;p&gt;Pagination metadata for this connection&lt;/p&gt;
+
+&lt;h2 id=&#34;VersionEdge&#34;&gt;VersionEdge&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type VersionEdge {
+  node: Version
+  cursor: String!
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;An edge in a Version connection&lt;/p&gt;
+
+&lt;h3 id=&#34;fields-8&#34;&gt;Fields&lt;/h3&gt;
+
+&lt;h4 id=&#34;cursor-string-1&#34;&gt;cursor (String!)&lt;/h4&gt;
+
+&lt;p&gt;Pagination cursor&lt;/p&gt;
+
+&lt;h4 id=&#34;node-version-version&#34;&gt;node (&lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt;)&lt;/h4&gt;
+
+&lt;p&gt;Version object connected by this edge&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>GraphQL Enums</title>
+      <link>https://melody-api.github.io/docs/reference/enums/</link>
+      <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
+      
+      <guid>https://melody-api.github.io/docs/reference/enums/</guid>
+      <description>
+
+&lt;h2 id=&#34;DependencyScope&#34;&gt;DependencyScope&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;enum DependencyScope {
+  BUILD
+  TEST
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Dependency type corresponding to &lt;code&gt;Imports&lt;/code&gt; vs. &lt;code&gt;TestImports&lt;/code&gt;&lt;/p&gt;
+
+&lt;h3 id=&#34;values&#34;&gt;Values&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;BUILD&lt;/strong&gt; &amp;ndash; Marks a dependency extracted from non-test files&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TEST&lt;/strong&gt; &amp;ndash; Marks a dependency extracted from &lt;code&gt;*_test.go&lt;/code&gt; files&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

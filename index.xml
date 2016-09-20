@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>melodyAPI</title>
+    <link>https://melody-api.github.io/index.xml</link>
+    <description>Recent content on melodyAPI</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 16 Sep 2016 00:11:02 +0100</lastBuildDate>
+    <atom:link href="https://melody-api.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Playground</title>
+      <link>https://melody-api.github.io/play/</link>
+      <pubDate>Fri, 16 Sep 2016 00:11:02 +0100</pubDate>
+      
+      <guid>https://melody-api.github.io/play/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
