@@ -6,8 +6,17 @@
     <description>Recent content on melodyAPI</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 16 Sep 2016 00:11:02 +0100</lastBuildDate>
+    <lastBuildDate>Fri, 07 Oct 2016 21:07:13 +0100</lastBuildDate>
     <atom:link href="https://melody-api.github.io/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>melodyAPI</title>
+      <link>https://melody-api.github.io/</link>
+      <pubDate>Fri, 07 Oct 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody-api.github.io/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Playground</title>
