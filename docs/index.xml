@@ -2,20 +2,20 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>melodyAPI documentation</title>
-    <link>https://melody-api.github.io/docs/index.xml</link>
+    <link>https://melody.sh/docs/index.xml</link>
     <description>Recent content on melodyAPI documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>melodyAPI docs</copyright>
     <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
-    <atom:link href="https://melody-api.github.io/docs/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://melody.sh/docs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Introduction</title>
-      <link>https://melody-api.github.io/docs/</link>
+      <link>https://melody.sh/docs/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/</guid>
+      <guid>https://melody.sh/docs/</guid>
       <description>
 
 
@@ -75,10 +75,10 @@ the greater developer community.&lt;/p&gt;
     
     <item>
       <title>Getting started</title>
-      <link>https://melody-api.github.io/docs/api/getting-started/</link>
+      <link>https://melody.sh/docs/api/getting-started/</link>
       <pubDate>Wed, 09 Mar 2016 00:11:02 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/api/getting-started/</guid>
+      <guid>https://melody.sh/docs/api/getting-started/</guid>
       <description>
 
 &lt;h2 id=&#34;endpoint&#34;&gt;Endpoint&lt;/h2&gt;
@@ -128,10 +128,10 @@ the greater developer community.&lt;/p&gt;
     
     <item>
       <title>GraphQL Queries</title>
-      <link>https://melody-api.github.io/docs/api/reference/</link>
+      <link>https://melody.sh/docs/api/reference/</link>
       <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/api/reference/</guid>
+      <guid>https://melody.sh/docs/api/reference/</guid>
       <description>
 
 &lt;p&gt;The following is the only root query available via our endpoint:&lt;/p&gt;
@@ -169,10 +169,10 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
     
     <item>
       <title>GraphQL Objects</title>
-      <link>https://melody-api.github.io/docs/api/reference/objects/</link>
+      <link>https://melody.sh/docs/api/reference/objects/</link>
       <pubDate>Thu, 15 Sep 2016 20:08:11 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/api/reference/objects/</guid>
+      <guid>https://melody.sh/docs/api/reference/objects/</guid>
       <description>
 
 &lt;h2 id=&#34;Dependency&#34;&gt;Dependency&lt;/h2&gt;
@@ -482,10 +482,10 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
     
     <item>
       <title>GraphQL Enums</title>
-      <link>https://melody-api.github.io/docs/api/reference/enums/</link>
+      <link>https://melody.sh/docs/api/reference/enums/</link>
       <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/api/reference/enums/</guid>
+      <guid>https://melody.sh/docs/api/reference/enums/</guid>
       <description>
 
 &lt;h2 id=&#34;DependencyScope&#34;&gt;DependencyScope&lt;/h2&gt;
