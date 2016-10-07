@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>melodyAPI documentation</title>
+    <title>GraphQL Queries - melodyAPI documentation</title>
     <meta name="generator" content="Hugo 0.17-DEV" />
 
     
     <meta name="description" content="A package cache for Go with sane versioning">
     
-    <link rel="canonical" href="https://melody-api.github.io/docs/">
+    <link rel="canonical" href="https://melody-api.github.io/docs/api/reference/">
     
 
-    <meta property="og:url" content="https://melody-api.github.io/docs/">
+    <meta property="og:url" content="https://melody-api.github.io/docs/api/reference/">
     <meta property="og:title" content="melodyAPI documentation">
     
     <meta name="apple-mobile-web-app-title" content="melodyAPI documentation">
@@ -70,9 +70,6 @@
     <script src="https://melody-api.github.io/docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://melody-api.github.io/docs/index.xml" rel="alternate" type="application/rss+xml" title="melodyAPI documentation" />
-    <link href="https://melody-api.github.io/docs/index.xml" rel="feed" type="application/rss+xml" title="melodyAPI documentation" />
-    
 
   </head>
   <body class="palette-primary-indigo palette-accent-pink">
@@ -98,7 +95,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        melodyAPI documentation
+        GraphQL Query
       </div>
     </div>
 
@@ -152,14 +149,11 @@
 
 
 
-<a class="current" title="Introduction" href="https://melody-api.github.io/docs/">
+<a  title="Introduction" href="https://melody-api.github.io/docs/">
 	
 	Introduction
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
   
 </li>
@@ -193,11 +187,14 @@
 
 
 
-<a  title="Queries" href="https://melody-api.github.io/docs/api/reference/">
+<a class="current" title="Queries" href="https://melody-api.github.io/docs/api/reference/">
 	
 	Queries
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
       
         
@@ -242,65 +239,41 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>Introduction </h1>
-
-				
-
-
-<figure class="xkcd-compiling">
-    
-        <img src="https://imgs.xkcd.com/comics/compiling.png" alt="Compiling" />
-    
-    
-    <figcaption>
-        <p>
-        
-        <a href="http://xkcd.com/303/"> 
-            XKCD
-        </a> 
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<p>melodyAPI is a backend platform that can save you hours of work and wait by
-caching Go repositories and preprocessing common analysis tasks to expose
-underlying metadata via a GraphQL API.  By caching much of this data,
-checking for repository updates or listing package dependencies take a few
-milliseconds instead of seconds or minutes.  When queried multiple times per
-day over multiple packages and repositories, this can accumulate into hours
-of saved time for you.</p>
-
-<h2 id="why-graphql">Why GraphQL?</h2>
-
-<p>We chose GraphQL to give us greater flexibility in how metadata is structured
-while giving clients more flexibility in how it&rsquo;s queried:</p>
-
-<ul>
-<li><p>Strongly-typed system helps create clean, structured, and safe APIs.</p></li>
-
-<li><p>Client-specified queries with field-level granularity help choose the perfect
-complexity/performance balance for each query.</p></li>
-
-<li><p>A healthy ecosystem of tools &amp; libraries can easily be taylored to this API
-by quering the type system via GraphQL itself.</p></li>
-
-<li><p>Deprecation support allows us to evolve the API while keeping backward
-compatibility.</p></li>
-</ul>
-
-<p>GraphQL is great &ndash; learn more about <a href="http://graphql.org">GraphQL</a>.</p>
-
-<h2 id="project-status">Project Status</h2>
-
-<p><strong>Early Preview</strong> &ndash; melodyAPI is not just another academic exercise; it
-grew out of an in-house project that serves real development needs, and we will
-continue active development to make it more useful for our team, and now to
-the greater developer community.</p>
+			<h1>GraphQL Queries </h1>
 
 			
+
+<p>The following is the only root query available via our endpoint:</p>
+
+<h3 id="package-package-objects-package">package (<a href="objects#Package">Package</a>)</h3>
+
+<p>Naturally, you query all package information by starting with a package name</p>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>name</td>
+<td>String!</td>
+<td>Name of the package</td>
+</tr>
+</tbody>
+</table>
+
+<div class="admonition note">
+<p class="admonition-title">Package names</p>
+<p>Please note that melodyAPI indexes packages by the name that you use in your &ldquo;import&rdquo;
+statements, not the path to the repo.  If a repository has no top-level package or
+it&rsquo;s named &ldquo;main&rdquo;, using its path as a package name will return a not-found error.</p>
+</div>
+
 
 			<aside class="copyright" role="note">
   &copy; 2016 melodyAPI docs &ndash;
@@ -313,23 +286,37 @@ the greater developer community.</p>
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://melody-api.github.io/docs/api/getting-started/" title="Getting started">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Getting started
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://melody-api.github.io/docs/api/getting-started/" title="Getting started">
+  
+      <a href="https://melody-api.github.io/docs/api/reference/objects/" title="GraphQL Objects">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Getting started
+              GraphQL Objects
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -337,8 +324,11 @@ the greater developer community.</p>
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 

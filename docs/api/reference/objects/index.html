@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>melodyAPI documentation</title>
+    <title>GraphQL Objects - melodyAPI documentation</title>
     <meta name="generator" content="Hugo 0.17-DEV" />
 
     
     <meta name="description" content="A package cache for Go with sane versioning">
     
-    <link rel="canonical" href="https://melody-api.github.io/docs/">
+    <link rel="canonical" href="https://melody-api.github.io/docs/api/reference/objects/">
     
 
-    <meta property="og:url" content="https://melody-api.github.io/docs/">
+    <meta property="og:url" content="https://melody-api.github.io/docs/api/reference/objects/">
     <meta property="og:title" content="melodyAPI documentation">
     
     <meta name="apple-mobile-web-app-title" content="melodyAPI documentation">
@@ -70,9 +70,6 @@
     <script src="https://melody-api.github.io/docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://melody-api.github.io/docs/index.xml" rel="alternate" type="application/rss+xml" title="melodyAPI documentation" />
-    <link href="https://melody-api.github.io/docs/index.xml" rel="feed" type="application/rss+xml" title="melodyAPI documentation" />
-    
 
   </head>
   <body class="palette-primary-indigo palette-accent-pink">
@@ -98,7 +95,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        melodyAPI documentation
+        GraphQL Object
       </div>
     </div>
 
@@ -152,14 +149,11 @@
 
 
 
-<a class="current" title="Introduction" href="https://melody-api.github.io/docs/">
+<a  title="Introduction" href="https://melody-api.github.io/docs/">
 	
 	Introduction
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
   
 </li>
@@ -205,11 +199,14 @@
 
 
 
-<a  title="Objects" href="https://melody-api.github.io/docs/api/reference/objects/">
+<a class="current" title="Objects" href="https://melody-api.github.io/docs/api/reference/objects/">
 	
 	Objects
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
       
         
@@ -242,65 +239,313 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>Introduction </h1>
-
-				
-
-
-<figure class="xkcd-compiling">
-    
-        <img src="https://imgs.xkcd.com/comics/compiling.png" alt="Compiling" />
-    
-    
-    <figcaption>
-        <p>
-        
-        <a href="http://xkcd.com/303/"> 
-            XKCD
-        </a> 
-        </p> 
-    </figcaption>
-    
-</figure>
-
-
-<p>melodyAPI is a backend platform that can save you hours of work and wait by
-caching Go repositories and preprocessing common analysis tasks to expose
-underlying metadata via a GraphQL API.  By caching much of this data,
-checking for repository updates or listing package dependencies take a few
-milliseconds instead of seconds or minutes.  When queried multiple times per
-day over multiple packages and repositories, this can accumulate into hours
-of saved time for you.</p>
-
-<h2 id="why-graphql">Why GraphQL?</h2>
-
-<p>We chose GraphQL to give us greater flexibility in how metadata is structured
-while giving clients more flexibility in how it&rsquo;s queried:</p>
-
-<ul>
-<li><p>Strongly-typed system helps create clean, structured, and safe APIs.</p></li>
-
-<li><p>Client-specified queries with field-level granularity help choose the perfect
-complexity/performance balance for each query.</p></li>
-
-<li><p>A healthy ecosystem of tools &amp; libraries can easily be taylored to this API
-by quering the type system via GraphQL itself.</p></li>
-
-<li><p>Deprecation support allows us to evolve the API while keeping backward
-compatibility.</p></li>
-</ul>
-
-<p>GraphQL is great &ndash; learn more about <a href="http://graphql.org">GraphQL</a>.</p>
-
-<h2 id="project-status">Project Status</h2>
-
-<p><strong>Early Preview</strong> &ndash; melodyAPI is not just another academic exercise; it
-grew out of an in-house project that serves real development needs, and we will
-continue active development to make it more useful for our team, and now to
-the greater developer community.</p>
+			<h1>GraphQL Objects </h1>
 
 			
+
+<h2 id="Dependency">Dependency</h2>
+
+<pre><code class="language-graphql">type Dependency {
+  name: String
+  scope: DependencyScope
+  versionRange: String
+}
+</code></pre>
+
+<h3 id="fields">Fields</h3>
+
+<h4 id="name-string">name (String)</h4>
+
+<p>Name of the package specified by the <code>import</code> statement</p>
+
+<h4 id="scope-dependencyscope-enums-dependencyscope">scope (<a href="../enums#DependencyScope">DependencyScope</a>)</h4>
+
+<p>&ldquo;BUILD&rdquo; or &ldquo;TEST&rdquo; corresponding to <code>Imports</code> vs. <code>TestImports</code></p>
+
+<h4 id="versionrange-string">versionRange (String)</h4>
+
+<p>Reserved for future use</p>
+
+<h2 id="DependencyConnection">DependencyConnection</h2>
+
+<pre><code class="language-graphql">type DependencyConnection {
+  edges: [DependencyEdge]
+  pageInfo: PageInfo!
+}
+</code></pre>
+
+<p>A connection to a list of dependencies.</p>
+
+<h3 id="fields-1">Fields</h3>
+
+<h4 id="edges-dependencyedge-dependencyedge">edges ([<a href="#DependencyEdge">DependencyEdge</a>])</h4>
+
+<p>Edges connecting to the listed Dependency nodes</p>
+
+<h4 id="pageinfo-pageinfo-pageinfo">pageInfo (<a href="#PageInfo">PageInfo</a>!)</h4>
+
+<p>Pagination metadata for this connection</p>
+
+<h2 id="DependencyEdge">DependencyEdge</h2>
+
+<pre><code class="language-graphql">type DependencyEdge {
+  node: Dependency
+  cursor: String!
+}
+</code></pre>
+
+<p>An edge in a Dependency connection</p>
+
+<h3 id="fields-2">Fields</h3>
+
+<h4 id="cursor-string">cursor (String!)</h4>
+
+<p>Pagination cursor</p>
+
+<h4 id="node-dependency-dependency">node (<a href="#Dependency">Dependency</a>)</h4>
+
+<p>Dependency object connected by this edge</p>
+
+<h2 id="Package">Package</h2>
+
+<pre><code class="language-graphql">type Package {
+  name: String
+  version(version: String, revision: String): Version
+  versions(first: Int, last: Int, before: String, after: String): VersionConnection
+}
+</code></pre>
+
+<h3 id="fields-3">Fields</h3>
+
+<h4 id="name-string-1">name (String)</h4>
+
+<p>Package name as specified in the <code>import</code> statement</p>
+
+<h4 id="version-version-version">version (<a href="#Version">Version</a>)</h4>
+
+<p>Query for a specific version by either the Semantic Version number, or by the revision ID of the repository.</p>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>revision</td>
+<td>String</td>
+<td>Find by repo revision</td>
+</tr>
+
+<tr>
+<td>version</td>
+<td>String</td>
+<td>Find by version number</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="versions-versionconnection-versionconnection">versions (<a href="#VersionConnection">VersionConnection</a>)</h4>
+
+<p>List all tagged and latest auto-generated versions of this package.</p>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>before</td>
+<td>String</td>
+<td>Cursor for pagination</td>
+</tr>
+
+<tr>
+<td>after</td>
+<td>String</td>
+<td>Cursor for pagination</td>
+</tr>
+
+<tr>
+<td>first</td>
+<td>Int</td>
+<td>Page size</td>
+</tr>
+
+<tr>
+<td>last</td>
+<td>Int</td>
+<td>Page size</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="PageInfo">PageInfo</h2>
+
+<pre><code class="language-graphql">type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+</code></pre>
+
+<p>Information about pagination in a connection.</p>
+
+<h3 id="fields-4">Fields</h3>
+
+<h4 id="hasnextpage-boolean">hasNextPage (Boolean!)</h4>
+
+<p>Next page available</p>
+
+<h4 id="haspreviouspage-boolean">hasPreviousPage (Boolean!)</h4>
+
+<p>Previous page available</p>
+
+<h4 id="startcursor-string">startCursor (String)</h4>
+
+<p>Cursor for first item of this page</p>
+
+<h4 id="endcursor-string">endCursor (String)</h4>
+
+<p>Cursor for last item of this page</p>
+
+<h2 id="Release">Release</h2>
+
+<pre><code class="language-graphql">type Release {
+  name: String
+  version: String
+  url: String
+}
+</code></pre>
+
+<h3 id="fields-5">Fields</h3>
+
+<h4 id="name-string-2">name (String)</h4>
+
+<p>Name of the repository from which the package was extracted</p>
+
+<h4 id="version-string">version (String)</h4>
+
+<p>Convenience accessor to the parent <a href="#Version">Version</a> version</p>
+
+<h4 id="url-string">url (String)</h4>
+
+<p>Link to download an archive of this release in <strong>tgz</strong> form</p>
+
+<h2 id="Version">Version</h2>
+
+<pre><code class="language-graphql">type Version {
+  name: String
+  version: String
+  release: Release
+  dependencies(after: String, first: Int, last: Int, before: String): DependencyConnection
+}
+</code></pre>
+
+<h3 id="fields-6">Fields</h3>
+
+<h4 id="name-string-3">name (String)</h4>
+
+<p>Convenience accessor to the parent <a href="#Package">Package</a> name</p>
+
+<h4 id="version-string-1">version (String)</h4>
+
+<p>Semantic version derrived from repository tags and history</p>
+
+<h4 id="release-release-release">release (<a href="#Release">Release</a>)</h4>
+
+<p>Details about the archive needed to install this package</p>
+
+<h4 id="dependencies-dependencyconnection-dependencyconnection">dependencies (<a href="#DependencyConnection">DependencyConnection</a>)</h4>
+
+<p>A RelayConnection to a list of dependencies that are imported by this version.</p>
+
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>before</td>
+<td>String</td>
+<td>Cursor for pagination</td>
+</tr>
+
+<tr>
+<td>after</td>
+<td>String</td>
+<td>Cursor for pagination</td>
+</tr>
+
+<tr>
+<td>first</td>
+<td>Int</td>
+<td>Page size</td>
+</tr>
+
+<tr>
+<td>last</td>
+<td>Int</td>
+<td>Page size</td>
+</tr>
+</tbody>
+</table>
+
+<h2 id="VersionConnection">VersionConnection</h2>
+
+<p>A connection to a list of items.</p>
+
+<pre><code class="language-graphql">type VersionConnection {
+  pageInfo: PageInfo!
+  edges: [VersionEdge]
+}
+</code></pre>
+
+<h3 id="fields-7">Fields</h3>
+
+<h4 id="edges-versionedge-versionedge">edges ([<a href="#VersionEdge">VersionEdge</a>])</h4>
+
+<p>Edges connecting to the listed Version nodes</p>
+
+<h4 id="pageinfo-pageinfo-pageinfo-1">pageInfo (<a href="#PageInfo">PageInfo</a>!)</h4>
+
+<p>Pagination metadata for this connection</p>
+
+<h2 id="VersionEdge">VersionEdge</h2>
+
+<pre><code class="language-graphql">type VersionEdge {
+  node: Version
+  cursor: String!
+}
+</code></pre>
+
+<p>An edge in a Version connection</p>
+
+<h3 id="fields-8">Fields</h3>
+
+<h4 id="cursor-string-1">cursor (String!)</h4>
+
+<p>Pagination cursor</p>
+
+<h4 id="node-version-version">node (<a href="#Version">Version</a>)</h4>
+
+<p>Version object connected by this edge</p>
+
 
 			<aside class="copyright" role="note">
   &copy; 2016 melodyAPI docs &ndash;
@@ -313,23 +558,37 @@ the greater developer community.</p>
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://melody-api.github.io/docs/api/reference/" title="GraphQL Queries">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              GraphQL Queries
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://melody-api.github.io/docs/api/getting-started/" title="Getting started">
+  
+      <a href="https://melody-api.github.io/docs/api/reference/enums/" title="GraphQL Enums">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Getting started
+              GraphQL Enums
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -337,8 +596,11 @@ the greater developer community.</p>
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 

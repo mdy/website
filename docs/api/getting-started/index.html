@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>melodyAPI documentation</title>
+    <title>Getting started - melodyAPI documentation</title>
     <meta name="generator" content="Hugo 0.17-DEV" />
 
     
     <meta name="description" content="A package cache for Go with sane versioning">
     
-    <link rel="canonical" href="https://melody-api.github.io/docs/">
+    <link rel="canonical" href="https://melody-api.github.io/docs/api/getting-started/">
     
 
-    <meta property="og:url" content="https://melody-api.github.io/docs/">
+    <meta property="og:url" content="https://melody-api.github.io/docs/api/getting-started/">
     <meta property="og:title" content="melodyAPI documentation">
     
     <meta name="apple-mobile-web-app-title" content="melodyAPI documentation">
@@ -70,9 +70,6 @@
     <script src="https://melody-api.github.io/docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://melody-api.github.io/docs/index.xml" rel="alternate" type="application/rss+xml" title="melodyAPI documentation" />
-    <link href="https://melody-api.github.io/docs/index.xml" rel="feed" type="application/rss+xml" title="melodyAPI documentation" />
-    
 
   </head>
   <body class="palette-primary-indigo palette-accent-pink">
@@ -98,7 +95,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        melodyAPI documentation
+        Getting started
       </div>
     </div>
 
@@ -152,14 +149,11 @@
 
 
 
-<a class="current" title="Introduction" href="https://melody-api.github.io/docs/">
+<a  title="Introduction" href="https://melody-api.github.io/docs/">
 	
 	Introduction
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
   
 </li>
@@ -172,11 +166,14 @@
 
 
 
-<a  title="Getting started" href="https://melody-api.github.io/docs/api/getting-started/">
+<a class="current" title="Getting started" href="https://melody-api.github.io/docs/api/getting-started/">
 	
 	Getting started
 </a>
 
+
+<ul id="scrollspy">
+</ul>
 
   
 </li>
@@ -242,65 +239,53 @@
 
 	<article class="article">
 		<div class="wrapper">
+			<h1>Getting started </h1>
+
 			
-				<h1>Introduction </h1>
 
-				
+<h2 id="endpoint">Endpoint</h2>
 
+<p>melodyAPI is available for developer preview at the following endpoint:</p>
 
-<figure class="xkcd-compiling">
-    
-        <img src="https://imgs.xkcd.com/comics/compiling.png" alt="Compiling" />
-    
-    
-    <figcaption>
-        <p>
-        
-        <a href="http://xkcd.com/303/"> 
-            XKCD
-        </a> 
-        </p> 
-    </figcaption>
-    
-</figure>
+<pre><code class="language-sh">https://api.melody.sh/graphql
+</code></pre>
 
+<h2 id="issuing-queries">Issuing queries</h2>
 
-<p>melodyAPI is a backend platform that can save you hours of work and wait by
-caching Go repositories and preprocessing common analysis tasks to expose
-underlying metadata via a GraphQL API.  By caching much of this data,
-checking for repository updates or listing package dependencies take a few
-milliseconds instead of seconds or minutes.  When queried multiple times per
-day over multiple packages and repositories, this can accumulate into hours
-of saved time for you.</p>
-
-<h2 id="why-graphql">Why GraphQL?</h2>
-
-<p>We chose GraphQL to give us greater flexibility in how metadata is structured
-while giving clients more flexibility in how it&rsquo;s queried:</p>
+<p>The handler will accept requests with the parameters:</p>
 
 <ul>
-<li><p>Strongly-typed system helps create clean, structured, and safe APIs.</p></li>
-
-<li><p>Client-specified queries with field-level granularity help choose the perfect
-complexity/performance balance for each query.</p></li>
-
-<li><p>A healthy ecosystem of tools &amp; libraries can easily be taylored to this API
-by quering the type system via GraphQL itself.</p></li>
-
-<li><p>Deprecation support allows us to evolve the API while keeping backward
-compatibility.</p></li>
+<li><code>query</code>: A required string GraphQL document to be executed.</li>
+<li><code>variables</code>: JSON object of values to use for any GraphQL query variables.</li>
+<li><code>operationName</code>: The operation to run if query contains more than one query.</li>
 </ul>
 
-<p>GraphQL is great &ndash; learn more about <a href="http://graphql.org">GraphQL</a>.</p>
+<p>These variables can be specified either via a query-string, or the POST body:</p>
 
-<h2 id="project-status">Project Status</h2>
+<pre><code class="language-sh">/graphql?query=query+getPkg($n:String!){package(name:$n){name}}&amp;variables={&quot;n&quot;:&quot;github.com/urfave/cli&quot;}
+</code></pre>
 
-<p><strong>Early Preview</strong> &ndash; melodyAPI is not just another academic exercise; it
-grew out of an in-house project that serves real development needs, and we will
-continue active development to make it more useful for our team, and now to
-the greater developer community.</p>
+<p>A POST body will be processed based on the incoming <code>Content-Type</code> header:</p>
 
-			
+<ul>
+<li><code>application/json</code>: Body will be parsed as a JSON object.</li>
+<li><code>application/graphql</code>: Body will be used as the <code>query</code> parameter with other parameters undefined.</li>
+<li><code>application/x-www-form-urlencoded</code>: Body will be parsed as a URL-encoded string of key-value pairs.</li>
+</ul>
+
+<h2 id="parsing-responses">Parsing responses</h2>
+
+<p>melodyAPI will return query results in JSON format:</p>
+
+<pre><code class="language-json">{
+  &quot;data&quot;: {
+    &quot;package&quot;: {
+      &quot;name&quot;: &quot;github.com/urfave/cli&quot;
+    }
+  }
+}
+</code></pre>
+
 
 			<aside class="copyright" role="note">
   &copy; 2016 melodyAPI docs &ndash;
@@ -313,23 +298,37 @@ the greater developer community.</p>
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://melody-api.github.io/docs/" title="Introduction">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Introduction
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://melody-api.github.io/docs/api/getting-started/" title="Getting started">
+  
+      <a href="https://melody-api.github.io/docs/api/reference/" title="GraphQL Queries">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Getting started
+              GraphQL Queries
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -337,8 +336,11 @@ the greater developer community.</p>
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 

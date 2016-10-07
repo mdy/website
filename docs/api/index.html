@@ -9,16 +9,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>melodyAPI documentation</title>
+    <title>Apis - melodyAPI documentation</title>
     <meta name="generator" content="Hugo 0.17-DEV" />
 
     
     <meta name="description" content="A package cache for Go with sane versioning">
     
-    <link rel="canonical" href="https://melody-api.github.io/docs/">
+    <link rel="canonical" href="https://melody-api.github.io/docs/api/">
     
 
-    <meta property="og:url" content="https://melody-api.github.io/docs/">
+    <meta property="og:url" content="https://melody-api.github.io/docs/api/">
     <meta property="og:title" content="melodyAPI documentation">
     
     <meta name="apple-mobile-web-app-title" content="melodyAPI documentation">
@@ -70,14 +70,12 @@
     <script src="https://melody-api.github.io/docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://melody-api.github.io/docs/index.xml" rel="alternate" type="application/rss+xml" title="melodyAPI documentation" />
-    <link href="https://melody-api.github.io/docs/index.xml" rel="feed" type="application/rss+xml" title="melodyAPI documentation" />
+    <link href="https://melody-api.github.io/docs/api/index.xml" rel="alternate" type="application/rss+xml" title="melodyAPI documentation" />
+    <link href="https://melody-api.github.io/docs/api/index.xml" rel="feed" type="application/rss+xml" title="melodyAPI documentation" />
     
 
   </head>
   <body class="palette-primary-indigo palette-accent-pink">
-
-
 
 
 <div class="backdrop">
@@ -98,7 +96,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        melodyAPI documentation
+        Api
       </div>
     </div>
 
@@ -152,14 +150,11 @@
 
 
 
-<a class="current" title="Introduction" href="https://melody-api.github.io/docs/">
+<a  title="Introduction" href="https://melody-api.github.io/docs/">
 	
 	Introduction
 </a>
 
-
-<ul id="scrollspy">
-</ul>
 
   
 </li>
@@ -242,64 +237,44 @@
 
 	<article class="article">
 		<div class="wrapper">
+			<h1>Pages in Api</h1>
+
 			
-				<h1>Introduction </h1>
+			<a href="https://melody-api.github.io/docs/api/getting-started/" title="Getting started">
+				<h2>Getting started</h2>
+			</a>
 
-				
+			<br>
+			Endpoint melodyAPI is available for developer preview at the following endpoint: <a href="https://api.melody.sh/graphql">https://api.melody.sh/graphql</a> Issuing queries The handler will accept requests with the parameters: query: A required string GraphQL document to be executed. variables: JSON object of values to use for any GraphQL query variables. operationName: The operation to run if query contains more than one query. These variables can be specified either via a query-string, or the POST body: /graphql?query=query+getPkg($n:String!){package(name:$n){name}}&amp;variables={&quot;n&quot;:&quot;github.com/urfave/cli&quot;} A POST body will be processed based on the incoming Content-Type header: application/json: Body will be parsed as a JSON object.
 
+			<hr>
+			
+			<a href="https://melody-api.github.io/docs/api/reference/" title="GraphQL Queries">
+				<h2>GraphQL Queries</h2>
+			</a>
 
-<figure class="xkcd-compiling">
-    
-        <img src="https://imgs.xkcd.com/comics/compiling.png" alt="Compiling" />
-    
-    
-    <figcaption>
-        <p>
-        
-        <a href="http://xkcd.com/303/"> 
-            XKCD
-        </a> 
-        </p> 
-    </figcaption>
-    
-</figure>
+			<br>
+			The following is the only root query available via our endpoint: package (Package) Naturally, you query all package information by starting with a package name Argument Type Description name String! Name of the package Package names Please note that melodyAPI indexes packages by the name that you use in your &ldquo;import&rdquo; statements, not the path to the repo. If a repository has no top-level package or it&rsquo;s named &ldquo;main&rdquo;, using its path as a package name will return a not-found error.
 
+			<hr>
+			
+			<a href="https://melody-api.github.io/docs/api/reference/objects/" title="GraphQL Objects">
+				<h2>GraphQL Objects</h2>
+			</a>
 
-<p>melodyAPI is a backend platform that can save you hours of work and wait by
-caching Go repositories and preprocessing common analysis tasks to expose
-underlying metadata via a GraphQL API.  By caching much of this data,
-checking for repository updates or listing package dependencies take a few
-milliseconds instead of seconds or minutes.  When queried multiple times per
-day over multiple packages and repositories, this can accumulate into hours
-of saved time for you.</p>
+			<br>
+			Dependency type Dependency { name: String scope: DependencyScope versionRange: String } Fields name (String) Name of the package specified by the import statement scope (DependencyScope) &ldquo;BUILD&rdquo; or &ldquo;TEST&rdquo; corresponding to Imports vs. TestImports versionRange (String) Reserved for future use DependencyConnection type DependencyConnection { edges: [DependencyEdge] pageInfo: PageInfo! } A connection to a list of dependencies. Fields edges ([DependencyEdge]) Edges connecting to the listed Dependency nodes pageInfo (PageInfo!) Pagination metadata for this connection DependencyEdge type DependencyEdge { node: Dependency cursor: String!
 
-<h2 id="why-graphql">Why GraphQL?</h2>
+			<hr>
+			
+			<a href="https://melody-api.github.io/docs/api/reference/enums/" title="GraphQL Enums">
+				<h2>GraphQL Enums</h2>
+			</a>
 
-<p>We chose GraphQL to give us greater flexibility in how metadata is structured
-while giving clients more flexibility in how it&rsquo;s queried:</p>
+			<br>
+			DependencyScope enum DependencyScope { BUILD TEST } Dependency type corresponding to Imports vs. TestImports Values BUILD &ndash; Marks a dependency extracted from non-test files TEST &ndash; Marks a dependency extracted from *_test.go files
 
-<ul>
-<li><p>Strongly-typed system helps create clean, structured, and safe APIs.</p></li>
-
-<li><p>Client-specified queries with field-level granularity help choose the perfect
-complexity/performance balance for each query.</p></li>
-
-<li><p>A healthy ecosystem of tools &amp; libraries can easily be taylored to this API
-by quering the type system via GraphQL itself.</p></li>
-
-<li><p>Deprecation support allows us to evolve the API while keeping backward
-compatibility.</p></li>
-</ul>
-
-<p>GraphQL is great &ndash; learn more about <a href="http://graphql.org">GraphQL</a>.</p>
-
-<h2 id="project-status">Project Status</h2>
-
-<p><strong>Early Preview</strong> &ndash; melodyAPI is not just another academic exercise; it
-grew out of an in-house project that serves real development needs, and we will
-continue active development to make it more useful for our team, and now to
-the greater developer community.</p>
-
+			<hr>
 			
 
 			<aside class="copyright" role="note">
@@ -310,39 +285,6 @@ the greater developer community.</p>
   <i class="fa fa-coffee" style="color:#6F4E37;" title="Coffee"></i>.
 </aside>
 
-			<footer class="footer">
-				
-
-
-
-<nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  </div>
-
-  
-  
-  <div class="next">
-      <a href="https://melody-api.github.io/docs/api/getting-started/" title="Getting started">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              Getting started
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  </div>
-</nav>
-
-
-
-			</footer>
 		</div>
 	</article>
 

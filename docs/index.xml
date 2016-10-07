@@ -75,10 +75,10 @@ the greater developer community.&lt;/p&gt;
     
     <item>
       <title>Getting started</title>
-      <link>https://melody-api.github.io/docs/getting-started/</link>
+      <link>https://melody-api.github.io/docs/api/getting-started/</link>
       <pubDate>Wed, 09 Mar 2016 00:11:02 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/getting-started/</guid>
+      <guid>https://melody-api.github.io/docs/api/getting-started/</guid>
       <description>
 
 &lt;h2 id=&#34;endpoint&#34;&gt;Endpoint&lt;/h2&gt;
@@ -128,10 +128,10 @@ the greater developer community.&lt;/p&gt;
     
     <item>
       <title>GraphQL Queries</title>
-      <link>https://melody-api.github.io/docs/reference/</link>
+      <link>https://melody-api.github.io/docs/api/reference/</link>
       <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/reference/</guid>
+      <guid>https://melody-api.github.io/docs/api/reference/</guid>
       <description>
 
 &lt;p&gt;The following is the only root query available via our endpoint:&lt;/p&gt;
@@ -169,10 +169,10 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
     
     <item>
       <title>GraphQL Objects</title>
-      <link>https://melody-api.github.io/docs/reference/objects/</link>
+      <link>https://melody-api.github.io/docs/api/reference/objects/</link>
       <pubDate>Thu, 15 Sep 2016 20:08:11 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/reference/objects/</guid>
+      <guid>https://melody-api.github.io/docs/api/reference/objects/</guid>
       <description>
 
 &lt;h2 id=&#34;Dependency&#34;&gt;Dependency&lt;/h2&gt;
@@ -482,10 +482,10 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
     
     <item>
       <title>GraphQL Enums</title>
-      <link>https://melody-api.github.io/docs/reference/enums/</link>
+      <link>https://melody-api.github.io/docs/api/reference/enums/</link>
       <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
       
-      <guid>https://melody-api.github.io/docs/reference/enums/</guid>
+      <guid>https://melody-api.github.io/docs/api/reference/enums/</guid>
       <description>
 
 &lt;h2 id=&#34;DependencyScope&#34;&gt;DependencyScope&lt;/h2&gt;
