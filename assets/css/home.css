@@ -26,6 +26,9 @@ body {
 section.features h1, section.features h2, section.features h3, section.features h4 {
   color: white; }
 
+section .btns .no-transform {
+  text-transform: none; }
+
 section .btns .input-lg {
   height: 43px; }
 

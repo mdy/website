@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>melodyAPI</title>
+    <title>Melody</title>
     <link>https://melody.sh/index.xml</link>
-    <description>Recent content on melodyAPI</description>
+    <description>Recent content on Melody</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 07 Oct 2016 21:07:13 +0100</lastBuildDate>
@@ -11,10 +11,28 @@
     
     <item>
       <title>melodyAPI</title>
+      <link>https://melody.sh/api/</link>
+      <pubDate>Fri, 07 Oct 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>melodyAPI</title>
       <link>https://melody.sh/</link>
       <pubDate>Fri, 07 Oct 2016 21:07:13 +0100</pubDate>
       
       <guid>https://melody.sh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>melodyCLI</title>
+      <link>https://melody.sh/cli/</link>
+      <pubDate>Fri, 07 Oct 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/cli/</guid>
       <description></description>
     </item>
     
