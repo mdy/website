@@ -23,6 +23,13 @@
   </url>
   
   <url>
+    <loc>https://melody.sh/bot/</loc>
+    <lastmod>2016-10-07T21:07:13+01:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1</priority>
+  </url>
+  
+  <url>
     <loc>https://melody.sh/cli/</loc>
     <lastmod>2016-10-07T21:07:13+01:00</lastmod>
     <changefreq>weekly</changefreq>
