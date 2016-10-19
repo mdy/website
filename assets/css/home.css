@@ -23,6 +23,17 @@ body {
     top: 33px;
     right: 29px; }
 
+section.about {
+  padding-bottom: 20px; }
+  section.about h2.title {
+    margin: -20px 0 30px; }
+  section.about .about-items {
+    margin-bottom: 50px; }
+  .landing-cli section.about .about-items {
+    margin: -20px 0 0; }
+  .landing-bot section.about {
+    padding: 60px 0 0; }
+
 section.features h1, section.features h2, section.features h3, section.features h4 {
   color: white; }
 
