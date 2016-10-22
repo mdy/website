@@ -1,38 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>melody documentation</title>
-    <link>https://melody.sh/docs/index.xml</link>
-    <description>Recent content on melody documentation</description>
+    <title>Getting-started-rsses on melody documentation</title>
+    <link>https://melody.sh/docs/getting-started/index.xml</link>
+    <description>Recent content in Getting-started-rsses on melody documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>melodyAPI docs</copyright>
     <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
-    <atom:link href="https://melody.sh/docs/index.xml" rel="self" type="application/rss+xml" />
-    
-    <item>
-      <title>Melody - Dependency Manager for Go</title>
-      <link>https://melody.sh/docs/</link>
-      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/</guid>
-      <description>&lt;p&gt;Melody is a tool that enables Go developers to manage project&amp;rsquo;s dependencies and ensure fast, consistent, and repeatable builds.  We&amp;rsquo;ve adopted the &lt;a href=&#34;https://github.com/melodysh/melody#credits-and-inspiration&#34;&gt;following principles&lt;/a&gt; to make this happen:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;All dependencies are vendored&lt;/strong&gt; to prevent multiple projects from clobbering shared repositories in GOPATH.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Human-friendly config file&lt;/strong&gt; explicitly specifies project details and dependencies with corresponding version restrictions.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Human-readable lock file&lt;/strong&gt; to record and track exact revision of each installed repository.  This file is used to deterministically recreate the &lt;code&gt;vendor&lt;/code&gt; directory.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Cloud-assisted repository indexing and caching&lt;/strong&gt; allows for much faster and more-reliable builds.  &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; integration makes sure your build is fast, and that a deleted repository or tag does not break future builds.&lt;/p&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;Please note that the &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; cloud cache may be cold during the beta period due to a low traffic.  This may cause slowness during your installs, but it will get faster as our userbase grows.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Melody requires Go 1.6+. Although it may work with GO15VENDOREXPERIMENT flag, Go 1.5 is not supported.&lt;/p&gt;
-</description>
-    </item>
+    <atom:link href="https://melody.sh/docs/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Installation</title>

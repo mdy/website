@@ -9,15 +9,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>melody documentation</title>
+    <title>Commands - melody documentation</title>
 
     
     <meta name="description" content="A package cache for Go with sane versioning">
     
-    <link rel="canonical" href="https://melody.sh/docs/">
+    <link rel="canonical" href="https://melody.sh/docs/getting-started/commands/">
     
 
-    <meta property="og:url" content="https://melody.sh/docs/">
+    <meta property="og:url" content="https://melody.sh/docs/getting-started/commands/">
     <meta property="og:title" content="melody documentation">
     
     <meta name="apple-mobile-web-app-title" content="melody documentation">
@@ -69,9 +69,6 @@
     <script src="https://melody.sh/docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://melody.sh/docs/index.xml" rel="alternate" type="application/rss+xml" title="melody documentation" />
-    <link href="https://melody.sh/docs/index.xml" rel="feed" type="application/rss+xml" title="melody documentation" />
-    
 
   </head>
   <body class="palette-primary-indigo palette-accent-pink">
@@ -97,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        melody documentation
+        Command
       </div>
     </div>
 
@@ -149,7 +146,7 @@
   
     
 
-<a class="current" title="Getting started" href="https://melody.sh/docs/">
+<a  title="Getting started" href="https://melody.sh/docs/">
 	
 	Getting started
 </a>
@@ -218,26 +215,32 @@
 
 	<article class="article">
 		<div class="wrapper">
-			
-				<h1>Melody - Dependency Manager for Go </h1>
+			<h1>Commands </h1>
 
-				<p>Melody is a tool that enables Go developers to manage project&rsquo;s dependencies and ensure fast, consistent, and repeatable builds.  We&rsquo;ve adopted the <a href="https://github.com/melodysh/melody#credits-and-inspiration">following principles</a> to make this happen:</p>
+			<pre><code class="language-bash">melody install
+</code></pre>
 
-<p><strong>All dependencies are vendored</strong> to prevent multiple projects from clobbering shared repositories in GOPATH.</p>
+<p>If you&rsquo;re running this command for the first time, Melody will resolve the dependency graph via <a href="https://melody.sh/api/">melodyAPI</a> and install the latest possible versions of each repository into the <code>vendor</code> subdirectory.  It will also save the current state in the <a href="/docs/getting-started/layout"><code>Melody.lock</code></a> file.</p>
 
-<p><strong>Human-friendly config file</strong> explicitly specifies project details and dependencies with corresponding version restrictions.</p>
+<p>Locking dependency versions in <code>Melody.lock</code> ensures that subsequent executions of the <code>install</code> command will recreate the <code>vendor</code> subdirectory with exactly the same versions of each dependency.  Whenever you try to recreate a project build, you should start with this command to return the project to the locked state.</p>
 
-<p><strong>Human-readable lock file</strong> to record and track exact revision of each installed repository.  This file is used to deterministically recreate the <code>vendor</code> directory.</p>
+<p>If you would like to update a particular dependency in the future, you can run:</p>
 
-<p><strong>Cloud-assisted repository indexing and caching</strong> allows for much faster and more-reliable builds.  <a href="https://melody.sh/api/">melodyAPI</a> integration makes sure your build is fast, and that a deleted repository or tag does not break future builds.</p>
+<pre><code>melody update github.com/gin-gonic/gin
+</code></pre>
 
-<blockquote>
-<p>Please note that the <a href="https://melody.sh/api/">melodyAPI</a> cloud cache may be cold during the beta period due to a low traffic.  This may cause slowness during your installs, but it will get faster as our userbase grows.</p>
-</blockquote>
+<p>This command will try to make minimal changes to your lockfile while updating that particular dependency.  But if you&rsquo;re feeling adventurous and would like to update everything, run:</p>
 
-<p>Melody requires Go 1.6+. Although it may work with GO15VENDOREXPERIMENT flag, Go 1.5 is not supported.</p>
+<pre><code>melody update
+</code></pre>
 
-			
+<p>Also, you can peek at available updates without making any changes:</p>
+
+<pre><code>melody outdated
+</code></pre>
+
+<p>That&rsquo;s it, for now.  Subsequent building and testing can be done via standard Go toolchain.</p>
+
 
 			<aside class="copyright" role="note">
   &copy; 2016 melodyAPI docs &ndash;
@@ -250,23 +253,37 @@
 			<footer class="footer">
 				
 
-
-
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
+  
+      <a href="https://melody.sh/docs/getting-started/usage/" title="Usage">
+        <span class="direction">
+          Previous
+        </span>
+        <div class="page">
+          <div class="button button-previous" role="button" aria-label="Previous">
+            <i class="icon icon-back"></i>
+          </div>
+          <div class="stretch">
+            <div class="title">
+              Usage
+            </div>
+          </div>
+        </div>
+      </a>
+  
   </div>
 
-  
-  
   <div class="next">
-      <a href="https://melody.sh/docs/getting-started/install/" title="Installation">
+  
+      <a href="https://melody.sh/docs/getting-started/layout/" title="Project layout">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Installation
+              Project layout
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
@@ -274,8 +291,11 @@
           </div>
         </div>
       </a>
+  
   </div>
 </nav>
+
+
 
 
 
