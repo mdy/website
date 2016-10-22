@@ -9,7 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>melodyAPI documentation</title>
+    <title>melody documentation</title>
 
     
     <meta name="description" content="A package cache for Go with sane versioning">
@@ -18,9 +18,9 @@
     
 
     <meta property="og:url" content="https://melody.sh/docs/">
-    <meta property="og:title" content="melodyAPI documentation">
+    <meta property="og:title" content="melody documentation">
     
-    <meta name="apple-mobile-web-app-title" content="melodyAPI documentation">
+    <meta name="apple-mobile-web-app-title" content="melody documentation">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -69,8 +69,8 @@
     <script src="https://melody.sh/docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://melody.sh/docs/index.xml" rel="alternate" type="application/rss+xml" title="melodyAPI documentation" />
-    <link href="https://melody.sh/docs/index.xml" rel="feed" type="application/rss+xml" title="melodyAPI documentation" />
+    <link href="https://melody.sh/docs/index.xml" rel="alternate" type="application/rss+xml" title="melody documentation" />
+    <link href="https://melody.sh/docs/index.xml" rel="feed" type="application/rss+xml" title="melody documentation" />
     
 
   </head>
@@ -97,7 +97,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        melodyAPI documentation
+        melody documentation
       </div>
     </div>
 
@@ -171,59 +171,12 @@
 
 
 
-<a  title="Getting started" href="https://melody.sh/docs/api/getting-started/">
+<a  title="API Reference" href="https://melody.sh/docs/api">
 	
-	Getting started
+	API Reference
 </a>
 
 
-  
-</li>
-
-
-
-<li>
-  
-    <span class="section">GraphQL Reference</span>
-    <ul>
-      
-        
-        
-
-
-
-<a  title="Queries" href="https://melody.sh/docs/api/reference/">
-	
-	Queries
-</a>
-
-
-      
-        
-        
-
-
-
-<a  title="Objects" href="https://melody.sh/docs/api/reference/objects/">
-	
-	Objects
-</a>
-
-
-      
-        
-        
-
-
-
-<a  title="Enums" href="https://melody.sh/docs/api/reference/enums/">
-	
-	Enums
-</a>
-
-
-      
-    </ul>
   
 </li>
 
@@ -242,62 +195,166 @@
 	<article class="article">
 		<div class="wrapper">
 			
-				<h1>Introduction </h1>
+				<h1>Melody - Dependency Manager for Go </h1>
 
 				
 
+<p>Melody is a tool that enables Go developers to manage project&rsquo;s dependencies and ensure fast, consistent, and repeatable builds.  We&rsquo;ve adopted the <a href="#credits-and-inspiration">following principles</a> to make this happen:</p>
 
-<figure class="xkcd-compiling">
-    
-        <img src="https://imgs.xkcd.com/comics/compiling.png" alt="Compiling" />
-    
-    
-    <figcaption>
-        <p>
-        
-        <a href="http://xkcd.com/303/"> 
-            XKCD
-        </a> 
-        </p> 
-    </figcaption>
-    
-</figure>
+<p><strong>All dependencies are vendored</strong> to prevent multiple projects from clobbering shared repositories in GOPATH.</p>
 
+<p><strong>Human-friendly config file</strong> explicitly specifies project details and dependencies with corresponding version restrictions.</p>
 
-<p>melodyAPI is a backend platform that can save you hours of work and wait by
-caching Go repositories and preprocessing common analysis tasks to expose
-underlying metadata via a GraphQL API.  By caching much of this data,
-checking for repository updates or listing package dependencies take a few
-milliseconds instead of seconds or minutes.  When queried multiple times per
-day over multiple packages and repositories, this can accumulate into hours
-of saved time for you.</p>
+<p><strong>Human-readable lock file</strong> to record and track exact revision of each installed repository.  This file is used to deterministically recreate the <code>vendor</code> directory.</p>
 
-<h2 id="why-graphql">Why GraphQL?</h2>
+<p><strong>Cloud-assisted repository indexing and caching</strong> allows for much faster and more-reliable builds.  <a href="https://melody.sh/api/">melodyAPI</a> integration makes sure your build is fast, and that a deleted repository or tag does not break future builds.</p>
 
-<p>We chose GraphQL to give us greater flexibility in how metadata is structured
-while giving clients more flexibility in how it&rsquo;s queried:</p>
+<blockquote>
+<p>Please note that the <a href="https://melody.sh/api/">melodyAPI</a> cloud cache may be cold during the beta period due to a low traffic.  This may cause slowness during your installs, but it will get faster as our userbase grows.</p>
+</blockquote>
+
+<p>Melody requires Go 1.6+. Although it may work with GO15VENDOREXPERIMENT flag, Go 1.5 is not supported.</p>
+
+<h2 id="installing-melody">Installing Melody</h2>
+
+<p>Binary builds are available in the <a href="https://github.com/melodysh/melody/releases">Releases</a> section of Melody GitHub repo.  For the latest unstable version, you can also <a href="#building-from-source">build from source</a>.</p>
+
+<h2 id="usage">Usage</h2>
+
+<p>Melody only needs a few simple commands to deliver a lot of power. To get started, please  <s>run <a href="#contribution-and-improvements"><code>melody init</code></a></s> manually create a <a href="#melodytoml"><code>Melody.toml</code></a> file and run <code>melody install</code>.   All required repositories will be installed into the project&rsquo;s <code>vendor</code> subdirectory.</p>
+
+<h3 id="commands">Commands</h3>
+
+<pre><code>melody install
+</code></pre>
+
+<p>If you&rsquo;re running this command for the first time, Melody will resolve the dependency graph via <a href="https://melody.sh/api/">melodyAPI</a> and install the latest possible versions of each repository into the <code>vendor</code> subdirectory.  It will also save the current state in the <a href="#melodylock"><code>Melody.lock</code></a> file.</p>
+
+<p>Locking dependency versions in <code>Melody.lock</code> ensures that subsequent executions of the <code>install</code> command will recreate the <code>vendor</code> subdirectory with exactly the same versions of each dependency.  Whenever you try to recreate a project build, you should start with this command to return the project to the locked state.</p>
+
+<p>If you would like to update a particular dependency in the future, you can run:</p>
+
+<pre><code>melody update github.com/gin-gonic/gin
+</code></pre>
+
+<p>This command will try to make minimal changes to your lockfile while updating that particular dependency.  But if you&rsquo;re feeling adventurous and would like to update everything, run:</p>
+
+<pre><code>melody update
+</code></pre>
+
+<p>Also, you can peek at available updates without making any changes:</p>
+
+<pre><code>melody outdated
+</code></pre>
+
+<p>That&rsquo;s it, for now.  Subsequent building and testing can be done via standard Go toolchain.</p>
+
+<h2 id="project-layout">Project layout</h2>
+
+<p>Melody integrates with the standard $GOPATH layout that you&rsquo;ve been using, you just need to add <code>Melody.{toml|lock}</code> files at the root of your project:</p>
+
+<pre><code>$GOPATH/src/path/to/project
+├── Melody.lock
+├── Melody.toml
+├── main.go
+└── ...
+</code></pre>
+
+<h3 id="melody-toml">Melody.toml</h3>
+
+<p>Both configuration and lockfile are in <a href="https://github.com/toml-lang/toml">TOML</a> configuration format.  Please take a look at <a href="https://github.com/melodysh/melody/blob/master/Melody.toml"><code>Melody.toml</code></a> for this repository for an example with inline documentation on how to get started.</p>
+
+<h3 id="melody-lock">Melody.lock</h3>
+
+<p>The lockfile is auto-generated and should not be modified by hand.  We highly recommend committing this file into your repository to enable repeatable outcome of <code>melody install</code>.</p>
+
+<h3 id="specifying-dependency-restrictions">Specifying dependency restrictions</h3>
+
+<p>When you specify dependencies in <code>Melody.toml</code>, you can restrict to a range or an exact version/revision that Melody should install.  These versions are extracted from repository&rsquo;s <a href="http://semver.org">SemVer</a>-compatible tags or auto-generated by melodyAPI.  We support the following dependency restrictions:</p>
 
 <ul>
-<li><p>Strongly-typed system helps create clean, structured, and safe APIs.</p></li>
-
-<li><p>Client-specified queries with field-level granularity help choose the perfect
-complexity/performance balance for each query.</p></li>
-
-<li><p>A healthy ecosystem of tools &amp; libraries can easily be taylored to this API
-by quering the type system via GraphQL itself.</p></li>
-
-<li><p>Deprecation support allows us to evolve the API while keeping backward
-compatibility.</p></li>
+<li><code>&quot;&quot;</code> or <code>&quot;*&quot;</code> specifies the latest tagged release version</li>
+<li><code>&quot;head&quot;</code> specifies the latest possible revision in main branch</li>
+<li><code>&quot;1.2.3&quot;</code> will only install a specific version (tagged or auto-generated)</li>
+<li><code>&quot;#sha&quot;</code> will install a specific revision of the repo</li>
+<li>You can also use ranges similar to <a href="https://github.com/npm/node-semver#ranges">npm-semver</a></li>
+<li>TODO: Expand SemVer range docs here</li>
 </ul>
 
-<p>GraphQL is great &ndash; learn more about <a href="http://graphql.org">GraphQL</a>.</p>
+<h3 id="importing-local-dependencies">Importing local dependencies</h3>
 
-<h2 id="project-status">Project Status</h2>
+<p>If you would like to import a package from another local repository, unfortunately at this time Melody cannot help you. Instead, we suggest temporarily removing that dependency from your <code>Melody.toml</code> and <code>vendor</code> subdirectory, and letting Go toolchain reference that local dependency via GOPATH.  Once you&rsquo;ve pushed the local changes to the origin server, you can return to vendoring that dependency via Melody.</p>
 
-<p><strong>Early Preview</strong> &ndash; melodyAPI is not just another academic exercise; it
-grew out of an in-house project that serves real development needs, and we will
-continue active development to make it more useful for our team, and now to
-the greater developer community.</p>
+<h2 id="contribution-and-improvements">Contribution and Improvements</h2>
+
+<p>We encourage you to contribute to Melody! The current iteration of Melody is just a preview of what it could be.  We would like to add the following in the near future:</p>
+
+<ul>
+<li><s><code>init</code> command to initialize a project with a basic <code>Melody.toml</code></s></li>
+<li><s><code>lint</code> command to validate configuration and dependencies</s></li>
+<li><s><code>init</code> should be smarter about creating projects in $GOPATH/src</s></li>
+<li><s>Auto-extract and validate dependencies in <code>init</code> and <code>lint</code></s></li>
+<li>Skip &ldquo;Resolving&rdquo; step for <code>install</code> with an existing lockfile.</li>
+<li>Support for <code>[test-dependencies]</code> group in <code>Melody.toml</code></li>
+<li>Batch GraphQL queries for package info from melodyAPI</li>
+<li>Better error handling and messaging</li>
+<li>Clean-up and document public API</li>
+<li>More tests</li>
+</ul>
+
+<h3 id="building-from-source">Building from source</h3>
+
+<p>Although you can use <code>go get</code> to install Melody, we, of course, recommend using Melody to prepare the project:</p>
+
+<pre><code class="language-bash">$ git clone https://github.com/melodysh/melody.git
+$ cd melody; melody install
+$ make build
+</code></pre>
+
+<h3 id="running-tests">Running tests</h3>
+
+<p>Once you have all the requirements to build Melody, you can run the tests after populating the test data:</p>
+
+<pre><code class="language-bash">$ make install
+$ make test
+</code></pre>
+
+<h3 id="submitting-updates">Submitting updates</h3>
+
+<p>If you would like to contribute to this project, just do the following:</p>
+
+<ol>
+<li>Fork the repo on Github.</li>
+<li>Add your features and make commits to your forked repo.</li>
+<li>Make a pull request to this repo.</li>
+<li>Review will be done and changes will be requested.</li>
+<li>Once changes are done or no changes are required, pull request will be merged.</li>
+<li>The next release will have your changes in it.</li>
+</ol>
+
+<p>Please take a look at the issues page if you want to get started.</p>
+
+<p>If you think it would be nice to have a particular feature that is presently not implemented, we would love to hear your ideas and consider working on it.  Just open an issue in Github.</p>
+
+<h2 id="credits-and-inspiration">Credits and inspiration</h2>
+
+<p>Aside from the dependencies specified in the <code>Melody.toml</code> file that make Melody possible, we drew ideas, inspiration, and sometimes ported code directly from:</p>
+
+<ul>
+<li><a href="http://bundler.io">Bundler</a> - Ruby dependency manager</li>
+<li><a href="http://doc.crates.io">Cargo</a> - Rust dependency manager</li>
+<li><a href="https://getcomposer.org">Composer</a> - PHP dependency manager</li>
+</ul>
+
+<p>Melody was started as an internal project at <a href="https://gemfury.com">Gemfury</a>, and the company will continue to sponsor its maintenance and future development.</p>
+
+<h2 id="questions">Questions</h2>
+
+<p>Please use the <a href="http://stackoverflow.com/questions/ask?tags=melody">tag &ldquo;melody&rdquo; on StackOverflow</a> or <a href="https://github.com/melodysh/melody/issues">file a Github Issue</a> if you have any other questions or problems.</p>
+
+<h2 id="license">License</h2>
+
+<p>Melody is Copyright © 2016 Michael Rykov. See LICENSE file for terms of use and redistribution.</p>
 
 			
 
@@ -313,31 +370,6 @@ the greater developer community.</p>
 				
 
 
-
-<nav class="pagination" aria-label="Footer">
-  <div class="previous">
-  </div>
-
-  
-  
-  <div class="next">
-      <a href="https://melody.sh/docs/api/getting-started/" title="Getting started">
-        <span class="direction">
-          Next
-        </span>
-        <div class="page">
-          <div class="stretch">
-            <div class="title">
-              Getting started
-            </div>
-          </div>
-          <div class="button button-next" role="button" aria-label="Next">
-            <i class="icon icon-forward"></i>
-          </div>
-        </div>
-      </a>
-  </div>
-</nav>
 
 
 

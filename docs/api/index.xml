@@ -7,8 +7,71 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>melodyAPI docs</copyright>
-    <lastBuildDate>Wed, 09 Mar 2016 00:11:02 +0100</lastBuildDate>
+    <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
     <atom:link href="https://melody.sh/docs/api/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Introduction</title>
+      <link>https://melody.sh/docs/api/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/api/</guid>
+      <description>
+
+
+&lt;figure class=&#34;xkcd-compiling&#34;&gt;
+    
+        &lt;img src=&#34;https://imgs.xkcd.com/comics/compiling.png&#34; alt=&#34;Compiling&#34; /&gt;
+    
+    
+    &lt;figcaption&gt;
+        &lt;p&gt;
+        
+        &lt;a href=&#34;http://xkcd.com/303/&#34;&gt; 
+            XKCD
+        &lt;/a&gt; 
+        &lt;/p&gt; 
+    &lt;/figcaption&gt;
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;melodyAPI is a backend platform that can save you hours of work and wait by
+caching Go repositories and preprocessing common analysis tasks to expose
+underlying metadata via a GraphQL API.  By caching much of this data,
+checking for repository updates or listing package dependencies take a few
+milliseconds instead of seconds or minutes.  When queried multiple times per
+day over multiple packages and repositories, this can accumulate into hours
+of saved time for you.&lt;/p&gt;
+
+&lt;h2 id=&#34;why-graphql&#34;&gt;Why GraphQL?&lt;/h2&gt;
+
+&lt;p&gt;We chose GraphQL to give us greater flexibility in how metadata is structured
+while giving clients more flexibility in how it&amp;rsquo;s queried:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Strongly-typed system helps create clean, structured, and safe APIs.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Client-specified queries with field-level granularity help choose the perfect
+complexity/performance balance for each query.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;A healthy ecosystem of tools &amp;amp; libraries can easily be taylored to this API
+by quering the type system via GraphQL itself.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Deprecation support allows us to evolve the API while keeping backward
+compatibility.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;GraphQL is great &amp;ndash; learn more about &lt;a href=&#34;http://graphql.org&#34;&gt;GraphQL&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;project-status&#34;&gt;Project Status&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Early Preview&lt;/strong&gt; &amp;ndash; melodyAPI is not just another academic exercise; it
+grew out of an in-house project that serves real development needs, and we will
+continue active development to make it more useful for our team, and now to
+the greater developer community.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Getting started</title>

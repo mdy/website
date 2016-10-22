@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>melodyAPI documentation</title>
+    <title>melody documentation</title>
     <link>https://melody.sh/docs/index.xml</link>
-    <description>Recent content on melodyAPI documentation</description>
+    <description>Recent content on melody documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>melodyAPI docs</copyright>
@@ -11,499 +11,169 @@
     <atom:link href="https://melody.sh/docs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Introduction</title>
+      <title>Melody - Dependency Manager for Go</title>
       <link>https://melody.sh/docs/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
       <guid>https://melody.sh/docs/</guid>
       <description>
 
+&lt;p&gt;Melody is a tool that enables Go developers to manage project&amp;rsquo;s dependencies and ensure fast, consistent, and repeatable builds.  We&amp;rsquo;ve adopted the &lt;a href=&#34;#credits-and-inspiration&#34;&gt;following principles&lt;/a&gt; to make this happen:&lt;/p&gt;
 
-&lt;figure class=&#34;xkcd-compiling&#34;&gt;
-    
-        &lt;img src=&#34;https://imgs.xkcd.com/comics/compiling.png&#34; alt=&#34;Compiling&#34; /&gt;
-    
-    
-    &lt;figcaption&gt;
-        &lt;p&gt;
-        
-        &lt;a href=&#34;http://xkcd.com/303/&#34;&gt; 
-            XKCD
-        &lt;/a&gt; 
-        &lt;/p&gt; 
-    &lt;/figcaption&gt;
-    
-&lt;/figure&gt;
+&lt;p&gt;&lt;strong&gt;All dependencies are vendored&lt;/strong&gt; to prevent multiple projects from clobbering shared repositories in GOPATH.&lt;/p&gt;
 
+&lt;p&gt;&lt;strong&gt;Human-friendly config file&lt;/strong&gt; explicitly specifies project details and dependencies with corresponding version restrictions.&lt;/p&gt;
 
-&lt;p&gt;melodyAPI is a backend platform that can save you hours of work and wait by
-caching Go repositories and preprocessing common analysis tasks to expose
-underlying metadata via a GraphQL API.  By caching much of this data,
-checking for repository updates or listing package dependencies take a few
-milliseconds instead of seconds or minutes.  When queried multiple times per
-day over multiple packages and repositories, this can accumulate into hours
-of saved time for you.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Human-readable lock file&lt;/strong&gt; to record and track exact revision of each installed repository.  This file is used to deterministically recreate the &lt;code&gt;vendor&lt;/code&gt; directory.&lt;/p&gt;
 
-&lt;h2 id=&#34;why-graphql&#34;&gt;Why GraphQL?&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Cloud-assisted repository indexing and caching&lt;/strong&gt; allows for much faster and more-reliable builds.  &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; integration makes sure your build is fast, and that a deleted repository or tag does not break future builds.&lt;/p&gt;
 
-&lt;p&gt;We chose GraphQL to give us greater flexibility in how metadata is structured
-while giving clients more flexibility in how it&amp;rsquo;s queried:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Please note that the &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; cloud cache may be cold during the beta period due to a low traffic.  This may cause slowness during your installs, but it will get faster as our userbase grows.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Melody requires Go 1.6+. Although it may work with GO15VENDOREXPERIMENT flag, Go 1.5 is not supported.&lt;/p&gt;
+
+&lt;h2 id=&#34;installing-melody&#34;&gt;Installing Melody&lt;/h2&gt;
+
+&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/melodysh/melody/releases&#34;&gt;Releases&lt;/a&gt; section of Melody GitHub repo.  For the latest unstable version, you can also &lt;a href=&#34;#building-from-source&#34;&gt;build from source&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;usage&#34;&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;Melody only needs a few simple commands to deliver a lot of power. To get started, please  &lt;s&gt;run &lt;a href=&#34;#contribution-and-improvements&#34;&gt;&lt;code&gt;melody init&lt;/code&gt;&lt;/a&gt;&lt;/s&gt; manually create a &lt;a href=&#34;#melodytoml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; file and run &lt;code&gt;melody install&lt;/code&gt;.   All required repositories will be installed into the project&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory.&lt;/p&gt;
+
+&lt;h3 id=&#34;commands&#34;&gt;Commands&lt;/h3&gt;
+
+&lt;pre&gt;&lt;code&gt;melody install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you&amp;rsquo;re running this command for the first time, Melody will resolve the dependency graph via &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; and install the latest possible versions of each repository into the &lt;code&gt;vendor&lt;/code&gt; subdirectory.  It will also save the current state in the &lt;a href=&#34;#melodylock&#34;&gt;&lt;code&gt;Melody.lock&lt;/code&gt;&lt;/a&gt; file.&lt;/p&gt;
+
+&lt;p&gt;Locking dependency versions in &lt;code&gt;Melody.lock&lt;/code&gt; ensures that subsequent executions of the &lt;code&gt;install&lt;/code&gt; command will recreate the &lt;code&gt;vendor&lt;/code&gt; subdirectory with exactly the same versions of each dependency.  Whenever you try to recreate a project build, you should start with this command to return the project to the locked state.&lt;/p&gt;
+
+&lt;p&gt;If you would like to update a particular dependency in the future, you can run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;melody update github.com/gin-gonic/gin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command will try to make minimal changes to your lockfile while updating that particular dependency.  But if you&amp;rsquo;re feeling adventurous and would like to update everything, run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;melody update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, you can peek at available updates without making any changes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;melody outdated
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it, for now.  Subsequent building and testing can be done via standard Go toolchain.&lt;/p&gt;
+
+&lt;h2 id=&#34;project-layout&#34;&gt;Project layout&lt;/h2&gt;
+
+&lt;p&gt;Melody integrates with the standard $GOPATH layout that you&amp;rsquo;ve been using, you just need to add &lt;code&gt;Melody.{toml|lock}&lt;/code&gt; files at the root of your project:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$GOPATH/src/path/to/project
+├── Melody.lock
+├── Melody.toml
+├── main.go
+└── ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;melody-toml&#34;&gt;Melody.toml&lt;/h3&gt;
+
+&lt;p&gt;Both configuration and lockfile are in &lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;TOML&lt;/a&gt; configuration format.  Please take a look at &lt;a href=&#34;https://github.com/melodysh/melody/blob/master/Melody.toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; for this repository for an example with inline documentation on how to get started.&lt;/p&gt;
+
+&lt;h3 id=&#34;melody-lock&#34;&gt;Melody.lock&lt;/h3&gt;
+
+&lt;p&gt;The lockfile is auto-generated and should not be modified by hand.  We highly recommend committing this file into your repository to enable repeatable outcome of &lt;code&gt;melody install&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;specifying-dependency-restrictions&#34;&gt;Specifying dependency restrictions&lt;/h3&gt;
+
+&lt;p&gt;When you specify dependencies in &lt;code&gt;Melody.toml&lt;/code&gt;, you can restrict to a range or an exact version/revision that Melody should install.  These versions are extracted from repository&amp;rsquo;s &lt;a href=&#34;http://semver.org&#34;&gt;SemVer&lt;/a&gt;-compatible tags or auto-generated by melodyAPI.  We support the following dependency restrictions:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;Strongly-typed system helps create clean, structured, and safe APIs.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Client-specified queries with field-level granularity help choose the perfect
-complexity/performance balance for each query.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;A healthy ecosystem of tools &amp;amp; libraries can easily be taylored to this API
-by quering the type system via GraphQL itself.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;Deprecation support allows us to evolve the API while keeping backward
-compatibility.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; or &lt;code&gt;&amp;quot;*&amp;quot;&lt;/code&gt; specifies the latest tagged release version&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;head&amp;quot;&lt;/code&gt; specifies the latest possible revision in main branch&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;1.2.3&amp;quot;&lt;/code&gt; will only install a specific version (tagged or auto-generated)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;#sha&amp;quot;&lt;/code&gt; will install a specific revision of the repo&lt;/li&gt;
+&lt;li&gt;You can also use ranges similar to &lt;a href=&#34;https://github.com/npm/node-semver#ranges&#34;&gt;npm-semver&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;TODO: Expand SemVer range docs here&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;GraphQL is great &amp;ndash; learn more about &lt;a href=&#34;http://graphql.org&#34;&gt;GraphQL&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;importing-local-dependencies&#34;&gt;Importing local dependencies&lt;/h3&gt;
 
-&lt;h2 id=&#34;project-status&#34;&gt;Project Status&lt;/h2&gt;
+&lt;p&gt;If you would like to import a package from another local repository, unfortunately at this time Melody cannot help you. Instead, we suggest temporarily removing that dependency from your &lt;code&gt;Melody.toml&lt;/code&gt; and &lt;code&gt;vendor&lt;/code&gt; subdirectory, and letting Go toolchain reference that local dependency via GOPATH.  Once you&amp;rsquo;ve pushed the local changes to the origin server, you can return to vendoring that dependency via Melody.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Early Preview&lt;/strong&gt; &amp;ndash; melodyAPI is not just another academic exercise; it
-grew out of an in-house project that serves real development needs, and we will
-continue active development to make it more useful for our team, and now to
-the greater developer community.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Getting started</title>
-      <link>https://melody.sh/docs/api/getting-started/</link>
-      <pubDate>Wed, 09 Mar 2016 00:11:02 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/api/getting-started/</guid>
-      <description>
+&lt;h2 id=&#34;contribution-and-improvements&#34;&gt;Contribution and Improvements&lt;/h2&gt;
 
-&lt;h2 id=&#34;endpoint&#34;&gt;Endpoint&lt;/h2&gt;
-
-&lt;p&gt;melodyAPI is available for developer preview at the following endpoint:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;https://api.melody.sh/graphql
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h2 id=&#34;issuing-queries&#34;&gt;Issuing queries&lt;/h2&gt;
-
-&lt;p&gt;The handler will accept requests with the parameters:&lt;/p&gt;
+&lt;p&gt;We encourage you to contribute to Melody! The current iteration of Melody is just a preview of what it could be.  We would like to add the following in the near future:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;query&lt;/code&gt;: A required string GraphQL document to be executed.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;variables&lt;/code&gt;: JSON object of values to use for any GraphQL query variables.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;operationName&lt;/code&gt;: The operation to run if query contains more than one query.&lt;/li&gt;
+&lt;li&gt;&lt;s&gt;&lt;code&gt;init&lt;/code&gt; command to initialize a project with a basic &lt;code&gt;Melody.toml&lt;/code&gt;&lt;/s&gt;&lt;/li&gt;
+&lt;li&gt;&lt;s&gt;&lt;code&gt;lint&lt;/code&gt; command to validate configuration and dependencies&lt;/s&gt;&lt;/li&gt;
+&lt;li&gt;&lt;s&gt;&lt;code&gt;init&lt;/code&gt; should be smarter about creating projects in $GOPATH/src&lt;/s&gt;&lt;/li&gt;
+&lt;li&gt;&lt;s&gt;Auto-extract and validate dependencies in &lt;code&gt;init&lt;/code&gt; and &lt;code&gt;lint&lt;/code&gt;&lt;/s&gt;&lt;/li&gt;
+&lt;li&gt;Skip &amp;ldquo;Resolving&amp;rdquo; step for &lt;code&gt;install&lt;/code&gt; with an existing lockfile.&lt;/li&gt;
+&lt;li&gt;Support for &lt;code&gt;[test-dependencies]&lt;/code&gt; group in &lt;code&gt;Melody.toml&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Batch GraphQL queries for package info from melodyAPI&lt;/li&gt;
+&lt;li&gt;Better error handling and messaging&lt;/li&gt;
+&lt;li&gt;Clean-up and document public API&lt;/li&gt;
+&lt;li&gt;More tests&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;These variables can be specified either via a query-string, or the POST body:&lt;/p&gt;
+&lt;h3 id=&#34;building-from-source&#34;&gt;Building from source&lt;/h3&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;/graphql?query=query+getPkg($n:String!){package(name:$n){name}}&amp;amp;variables={&amp;quot;n&amp;quot;:&amp;quot;github.com/urfave/cli&amp;quot;}
+&lt;p&gt;Although you can use &lt;code&gt;go get&lt;/code&gt; to install Melody, we, of course, recommend using Melody to prepare the project:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ git clone https://github.com/melodysh/melody.git
+$ cd melody; melody install
+$ make build
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;A POST body will be processed based on the incoming &lt;code&gt;Content-Type&lt;/code&gt; header:&lt;/p&gt;
+&lt;h3 id=&#34;running-tests&#34;&gt;Running tests&lt;/h3&gt;
+
+&lt;p&gt;Once you have all the requirements to build Melody, you can run the tests after populating the test data:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;$ make install
+$ make test
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;submitting-updates&#34;&gt;Submitting updates&lt;/h3&gt;
+
+&lt;p&gt;If you would like to contribute to this project, just do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Fork the repo on Github.&lt;/li&gt;
+&lt;li&gt;Add your features and make commits to your forked repo.&lt;/li&gt;
+&lt;li&gt;Make a pull request to this repo.&lt;/li&gt;
+&lt;li&gt;Review will be done and changes will be requested.&lt;/li&gt;
+&lt;li&gt;Once changes are done or no changes are required, pull request will be merged.&lt;/li&gt;
+&lt;li&gt;The next release will have your changes in it.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Please take a look at the issues page if you want to get started.&lt;/p&gt;
+
+&lt;p&gt;If you think it would be nice to have a particular feature that is presently not implemented, we would love to hear your ideas and consider working on it.  Just open an issue in Github.&lt;/p&gt;
+
+&lt;h2 id=&#34;credits-and-inspiration&#34;&gt;Credits and inspiration&lt;/h2&gt;
+
+&lt;p&gt;Aside from the dependencies specified in the &lt;code&gt;Melody.toml&lt;/code&gt; file that make Melody possible, we drew ideas, inspiration, and sometimes ported code directly from:&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;code&gt;application/json&lt;/code&gt;: Body will be parsed as a JSON object.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;application/graphql&lt;/code&gt;: Body will be used as the &lt;code&gt;query&lt;/code&gt; parameter with other parameters undefined.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;application/x-www-form-urlencoded&lt;/code&gt;: Body will be parsed as a URL-encoded string of key-value pairs.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://bundler.io&#34;&gt;Bundler&lt;/a&gt; - Ruby dependency manager&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://doc.crates.io&#34;&gt;Cargo&lt;/a&gt; - Rust dependency manager&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://getcomposer.org&#34;&gt;Composer&lt;/a&gt; - PHP dependency manager&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&#34;parsing-responses&#34;&gt;Parsing responses&lt;/h2&gt;
+&lt;p&gt;Melody was started as an internal project at &lt;a href=&#34;https://gemfury.com&#34;&gt;Gemfury&lt;/a&gt;, and the company will continue to sponsor its maintenance and future development.&lt;/p&gt;
 
-&lt;p&gt;melodyAPI will return query results in JSON format:&lt;/p&gt;
+&lt;h2 id=&#34;questions&#34;&gt;Questions&lt;/h2&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
-  &amp;quot;data&amp;quot;: {
-    &amp;quot;package&amp;quot;: {
-      &amp;quot;name&amp;quot;: &amp;quot;github.com/urfave/cli&amp;quot;
-    }
-  }
-}
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>GraphQL Queries</title>
-      <link>https://melody.sh/docs/api/reference/</link>
-      <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/api/reference/</guid>
-      <description>
+&lt;p&gt;Please use the &lt;a href=&#34;http://stackoverflow.com/questions/ask?tags=melody&#34;&gt;tag &amp;ldquo;melody&amp;rdquo; on StackOverflow&lt;/a&gt; or &lt;a href=&#34;https://github.com/melodysh/melody/issues&#34;&gt;file a Github Issue&lt;/a&gt; if you have any other questions or problems.&lt;/p&gt;
 
-&lt;p&gt;The following is the only root query available via our endpoint:&lt;/p&gt;
+&lt;h2 id=&#34;license&#34;&gt;License&lt;/h2&gt;
 
-&lt;h3 id=&#34;package-package-objects-package&#34;&gt;package (&lt;a href=&#34;objects#Package&#34;&gt;Package&lt;/a&gt;)&lt;/h3&gt;
-
-&lt;p&gt;Naturally, you query all package information by starting with a package name&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Argument&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;name&lt;/td&gt;
-&lt;td&gt;String!&lt;/td&gt;
-&lt;td&gt;Name of the package&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;div class=&#34;admonition note&#34;&gt;
-&lt;p class=&#34;admonition-title&#34;&gt;Package names&lt;/p&gt;
-&lt;p&gt;Please note that melodyAPI indexes packages by the name that you use in your &amp;ldquo;import&amp;rdquo;
-statements, not the path to the repo.  If a repository has no top-level package or
-it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package name will return a not-found error.&lt;/p&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>GraphQL Objects</title>
-      <link>https://melody.sh/docs/api/reference/objects/</link>
-      <pubDate>Thu, 15 Sep 2016 20:08:11 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/api/reference/objects/</guid>
-      <description>
-
-&lt;h2 id=&#34;Dependency&#34;&gt;Dependency&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Dependency {
-  name: String
-  scope: DependencyScope
-  versionRange: String
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fields&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;name-string&#34;&gt;name (String)&lt;/h4&gt;
-
-&lt;p&gt;Name of the package specified by the &lt;code&gt;import&lt;/code&gt; statement&lt;/p&gt;
-
-&lt;h4 id=&#34;scope-dependencyscope-enums-dependencyscope&#34;&gt;scope (&lt;a href=&#34;../enums#DependencyScope&#34;&gt;DependencyScope&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;&amp;ldquo;BUILD&amp;rdquo; or &amp;ldquo;TEST&amp;rdquo; corresponding to &lt;code&gt;Imports&lt;/code&gt; vs. &lt;code&gt;TestImports&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4 id=&#34;versionrange-string&#34;&gt;versionRange (String)&lt;/h4&gt;
-
-&lt;p&gt;Reserved for future use&lt;/p&gt;
-
-&lt;h2 id=&#34;DependencyConnection&#34;&gt;DependencyConnection&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type DependencyConnection {
-  edges: [DependencyEdge]
-  pageInfo: PageInfo!
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A connection to a list of dependencies.&lt;/p&gt;
-
-&lt;h3 id=&#34;fields-1&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;edges-dependencyedge-dependencyedge&#34;&gt;edges ([&lt;a href=&#34;#DependencyEdge&#34;&gt;DependencyEdge&lt;/a&gt;])&lt;/h4&gt;
-
-&lt;p&gt;Edges connecting to the listed Dependency nodes&lt;/p&gt;
-
-&lt;h4 id=&#34;pageinfo-pageinfo-pageinfo&#34;&gt;pageInfo (&lt;a href=&#34;#PageInfo&#34;&gt;PageInfo&lt;/a&gt;!)&lt;/h4&gt;
-
-&lt;p&gt;Pagination metadata for this connection&lt;/p&gt;
-
-&lt;h2 id=&#34;DependencyEdge&#34;&gt;DependencyEdge&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type DependencyEdge {
-  node: Dependency
-  cursor: String!
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;An edge in a Dependency connection&lt;/p&gt;
-
-&lt;h3 id=&#34;fields-2&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;cursor-string&#34;&gt;cursor (String!)&lt;/h4&gt;
-
-&lt;p&gt;Pagination cursor&lt;/p&gt;
-
-&lt;h4 id=&#34;node-dependency-dependency&#34;&gt;node (&lt;a href=&#34;#Dependency&#34;&gt;Dependency&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;Dependency object connected by this edge&lt;/p&gt;
-
-&lt;h2 id=&#34;Package&#34;&gt;Package&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Package {
-  name: String
-  version(version: String, revision: String): Version
-  versions(first: Int, last: Int, before: String, after: String): VersionConnection
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fields-3&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;name-string-1&#34;&gt;name (String)&lt;/h4&gt;
-
-&lt;p&gt;Package name as specified in the &lt;code&gt;import&lt;/code&gt; statement&lt;/p&gt;
-
-&lt;h4 id=&#34;version-version-version&#34;&gt;version (&lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;Query for a specific version by either the Semantic Version number, or by the revision ID of the repository.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Argument&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;revision&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Find by repo revision&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;version&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Find by version number&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h4 id=&#34;versions-versionconnection-versionconnection&#34;&gt;versions (&lt;a href=&#34;#VersionConnection&#34;&gt;VersionConnection&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;List all tagged and latest auto-generated versions of this package.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Argument&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;before&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Cursor for pagination&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;after&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Cursor for pagination&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;first&lt;/td&gt;
-&lt;td&gt;Int&lt;/td&gt;
-&lt;td&gt;Page size&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;last&lt;/td&gt;
-&lt;td&gt;Int&lt;/td&gt;
-&lt;td&gt;Page size&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;PageInfo&#34;&gt;PageInfo&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Information about pagination in a connection.&lt;/p&gt;
-
-&lt;h3 id=&#34;fields-4&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;hasnextpage-boolean&#34;&gt;hasNextPage (Boolean!)&lt;/h4&gt;
-
-&lt;p&gt;Next page available&lt;/p&gt;
-
-&lt;h4 id=&#34;haspreviouspage-boolean&#34;&gt;hasPreviousPage (Boolean!)&lt;/h4&gt;
-
-&lt;p&gt;Previous page available&lt;/p&gt;
-
-&lt;h4 id=&#34;startcursor-string&#34;&gt;startCursor (String)&lt;/h4&gt;
-
-&lt;p&gt;Cursor for first item of this page&lt;/p&gt;
-
-&lt;h4 id=&#34;endcursor-string&#34;&gt;endCursor (String)&lt;/h4&gt;
-
-&lt;p&gt;Cursor for last item of this page&lt;/p&gt;
-
-&lt;h2 id=&#34;Release&#34;&gt;Release&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Release {
-  name: String
-  version: String
-  url: String
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fields-5&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;name-string-2&#34;&gt;name (String)&lt;/h4&gt;
-
-&lt;p&gt;Name of the repository from which the package was extracted&lt;/p&gt;
-
-&lt;h4 id=&#34;version-string&#34;&gt;version (String)&lt;/h4&gt;
-
-&lt;p&gt;Convenience accessor to the parent &lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt; version&lt;/p&gt;
-
-&lt;h4 id=&#34;url-string&#34;&gt;url (String)&lt;/h4&gt;
-
-&lt;p&gt;Link to download an archive of this release in &lt;strong&gt;tgz&lt;/strong&gt; form&lt;/p&gt;
-
-&lt;h2 id=&#34;Version&#34;&gt;Version&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Version {
-  name: String
-  version: String
-  release: Release
-  dependencies(after: String, first: Int, last: Int, before: String): DependencyConnection
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fields-6&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;name-string-3&#34;&gt;name (String)&lt;/h4&gt;
-
-&lt;p&gt;Convenience accessor to the parent &lt;a href=&#34;#Package&#34;&gt;Package&lt;/a&gt; name&lt;/p&gt;
-
-&lt;h4 id=&#34;version-string-1&#34;&gt;version (String)&lt;/h4&gt;
-
-&lt;p&gt;Semantic version derrived from repository tags and history&lt;/p&gt;
-
-&lt;h4 id=&#34;release-release-release&#34;&gt;release (&lt;a href=&#34;#Release&#34;&gt;Release&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;Details about the archive needed to install this package&lt;/p&gt;
-
-&lt;h4 id=&#34;dependencies-dependencyconnection-dependencyconnection&#34;&gt;dependencies (&lt;a href=&#34;#DependencyConnection&#34;&gt;DependencyConnection&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;A RelayConnection to a list of dependencies that are imported by this version.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Argument&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;before&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Cursor for pagination&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;after&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Cursor for pagination&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;first&lt;/td&gt;
-&lt;td&gt;Int&lt;/td&gt;
-&lt;td&gt;Page size&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;last&lt;/td&gt;
-&lt;td&gt;Int&lt;/td&gt;
-&lt;td&gt;Page size&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;VersionConnection&#34;&gt;VersionConnection&lt;/h2&gt;
-
-&lt;p&gt;A connection to a list of items.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type VersionConnection {
-  pageInfo: PageInfo!
-  edges: [VersionEdge]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fields-7&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;edges-versionedge-versionedge&#34;&gt;edges ([&lt;a href=&#34;#VersionEdge&#34;&gt;VersionEdge&lt;/a&gt;])&lt;/h4&gt;
-
-&lt;p&gt;Edges connecting to the listed Version nodes&lt;/p&gt;
-
-&lt;h4 id=&#34;pageinfo-pageinfo-pageinfo-1&#34;&gt;pageInfo (&lt;a href=&#34;#PageInfo&#34;&gt;PageInfo&lt;/a&gt;!)&lt;/h4&gt;
-
-&lt;p&gt;Pagination metadata for this connection&lt;/p&gt;
-
-&lt;h2 id=&#34;VersionEdge&#34;&gt;VersionEdge&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type VersionEdge {
-  node: Version
-  cursor: String!
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;An edge in a Version connection&lt;/p&gt;
-
-&lt;h3 id=&#34;fields-8&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;cursor-string-1&#34;&gt;cursor (String!)&lt;/h4&gt;
-
-&lt;p&gt;Pagination cursor&lt;/p&gt;
-
-&lt;h4 id=&#34;node-version-version&#34;&gt;node (&lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;Version object connected by this edge&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>GraphQL Enums</title>
-      <link>https://melody.sh/docs/api/reference/enums/</link>
-      <pubDate>Wed, 09 Mar 2016 20:08:11 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/api/reference/enums/</guid>
-      <description>
-
-&lt;h2 id=&#34;DependencyScope&#34;&gt;DependencyScope&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;enum DependencyScope {
-  BUILD
-  TEST
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Dependency type corresponding to &lt;code&gt;Imports&lt;/code&gt; vs. &lt;code&gt;TestImports&lt;/code&gt;&lt;/p&gt;
-
-&lt;h3 id=&#34;values&#34;&gt;Values&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;BUILD&lt;/strong&gt; &amp;ndash; Marks a dependency extracted from non-test files&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;TEST&lt;/strong&gt; &amp;ndash; Marks a dependency extracted from &lt;code&gt;*_test.go&lt;/code&gt; files&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Melody is Copyright © 2016 Michael Rykov. See LICENSE file for terms of use and redistribution.&lt;/p&gt;
 </description>
     </item>
     
