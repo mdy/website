@@ -12,7 +12,7 @@
     <title>Installation - melody documentation</title>
 
     
-    <meta name="description" content="A package cache for Go with sane versioning">
+    <meta name="description" content="Fast and reliable Go dependency manager">
     
     <link rel="canonical" href="https://melody.sh/docs/getting-started/install/">
     
@@ -165,12 +165,6 @@
     </li>
   
     <li class="anchor">
-      <a title="Commands" href="https://melody.sh/docs/getting-started/commands/">
-        Commands
-      </a>
-    </li>
-  
-    <li class="anchor">
       <a title="Project layout" href="https://melody.sh/docs/getting-started/layout/">
         Project layout
       </a>
@@ -217,11 +211,41 @@
 		<div class="wrapper">
 			<h1>Installation </h1>
 
-			<p>Binary builds are available in the <a href="https://github.com/melodysh/melody/releases">Releases</a> section of Melody GitHub repo.  For the latest unstable version, you can also <a href="https://github.com/melodysh/melody#building-from-source">build from source</a>.</p>
+			<p>Binary builds are available in the <a href="https://github.com/melodysh/melody/releases">Releases</a> section of the GitHub repo.
+You can also <a href="https://github.com/melodysh/melody#building-from-source">build Melody from source</a>.</p>
+
+<div class="github-releases">
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    
+  
+  <script>
+    var url = "https://api.github.com/repos/melodysh\/melody/releases";
+    var parent = $(document.currentScript).closest('.github-releases');
+    $.get(url).then(function(releases, ok) {
+      if(ok !== "success" || releases.length < 1) return;
+      var latest = releases[0];
+      var html = $('<div class="content">');
+      var list = html.append("<ul>");
+      console.log(latest.assets);
+
+      for(var i=0; i < latest.assets.length; i++){
+        var a = latest.assets[i];
+        $("<a/>")
+          .text(a.name)
+          .attr("href", a.browser_download_url)
+          .appendTo($("<li>").appendTo(list));
+      }
+
+      parent.append(html);
+    })
+  </script>
+</div>
+
 
 
 			<aside class="copyright" role="note">
-  &copy; 2016 melodyAPI docs &ndash;
+  &copy; 2016 melody docs &ndash;
   Built with <a href="https://www.gohugo.io" target="_blank">Hugo</a>,
   <a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a>,
   <i class="fa fa-heart" style="color:#DD2222;" title="Love"></i>, and

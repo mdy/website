@@ -6,7 +6,7 @@
     <description>Recent content in Getting-started-rsses on melody documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>melodyAPI docs</copyright>
+    <copyright>melody docs</copyright>
     <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
     <atom:link href="https://melody.sh/docs/getting-started/index.xml" rel="self" type="application/rss+xml" />
     
@@ -16,7 +16,37 @@
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
       <guid>https://melody.sh/docs/getting-started/install/</guid>
-      <description>&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/melodysh/melody/releases&#34;&gt;Releases&lt;/a&gt; section of Melody GitHub repo.  For the latest unstable version, you can also &lt;a href=&#34;https://github.com/melodysh/melody#building-from-source&#34;&gt;build from source&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/melodysh/melody/releases&#34;&gt;Releases&lt;/a&gt; section of the GitHub repo.
+You can also &lt;a href=&#34;https://github.com/melodysh/melody#building-from-source&#34;&gt;build Melody from source&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&#34;github-releases&#34;&gt;
+  
+    &lt;script src=&#34;https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js&#34;&gt;&lt;/script&gt;
+    
+  
+  &lt;script&gt;
+    var url = &#34;https://api.github.com/repos/melodysh\/melody/releases&#34;;
+    var parent = $(document.currentScript).closest(&#39;.github-releases&#39;);
+    $.get(url).then(function(releases, ok) {
+      if(ok !== &#34;success&#34; || releases.length &lt; 1) return;
+      var latest = releases[0];
+      var html = $(&#39;&lt;div class=&#34;content&#34;&gt;&#39;);
+      var list = html.append(&#34;&lt;ul&gt;&#34;);
+      console.log(latest.assets);
+
+      for(var i=0; i &lt; latest.assets.length; i++){
+        var a = latest.assets[i];
+        $(&#34;&lt;a/&gt;&#34;)
+          .text(a.name)
+          .attr(&#34;href&#34;, a.browser_download_url)
+          .appendTo($(&#34;&lt;li&gt;&#34;).appendTo(list));
+      }
+
+      parent.append(html);
+    })
+  &lt;/script&gt;
+&lt;/div&gt;
+
 </description>
     </item>
     
@@ -26,20 +56,12 @@
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
       <guid>https://melody.sh/docs/getting-started/usage/</guid>
-      <description>&lt;p&gt;Melody only needs a few simple commands to deliver a lot of power. To get started, please  &lt;s&gt;run &lt;a href=&#34;https://github.com/melodysh/melody#contribution-and-improvements&#34;&gt;&lt;code&gt;melody init&lt;/code&gt;&lt;/a&gt;&lt;/s&gt; manually create a &lt;a href=&#34;https://melody.sh/docs/docs/getting-started/layout&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; file and run &lt;code&gt;melody install&lt;/code&gt;.   All required repositories will be installed into the project&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Commands</title>
-      <link>https://melody.sh/docs/getting-started/commands/</link>
-      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/getting-started/commands/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;melody install
+      <description>&lt;p&gt;Melody only needs a few simple commands to deliver a lot of power. To get started, please  &lt;s&gt;run &lt;a href=&#34;https://github.com/melodysh/melody#contribution-and-improvements&#34;&gt;&lt;code&gt;melody init&lt;/code&gt;&lt;/a&gt;&lt;/s&gt; manually create a &lt;a href=&#34;https://melody.sh/docs/docs/getting-started/layout#melody-toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; file and run &lt;code&gt;melody install&lt;/code&gt;.   All required repositories will be installed into the project&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;melody install
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;If you&amp;rsquo;re running this command for the first time, Melody will resolve the dependency graph via &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; and install the latest possible versions of each repository into the &lt;code&gt;vendor&lt;/code&gt; subdirectory.  It will also save the current state in the &lt;a href=&#34;https://melody.sh/docs/docs/getting-started/layout&#34;&gt;&lt;code&gt;Melody.lock&lt;/code&gt;&lt;/a&gt; file.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re running this command for the first time, Melody will resolve the dependency graph via &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; and install the latest possible versions of each repository into the &lt;code&gt;vendor&lt;/code&gt; subdirectory.  It will also save the current state in the &lt;a href=&#34;https://melody.sh/docs/docs/getting-started/layout#melody-lock&#34;&gt;&lt;code&gt;Melody.lock&lt;/code&gt;&lt;/a&gt; file.&lt;/p&gt;
 
 &lt;p&gt;Locking dependency versions in &lt;code&gt;Melody.lock&lt;/code&gt; ensures that subsequent executions of the &lt;code&gt;install&lt;/code&gt; command will recreate the &lt;code&gt;vendor&lt;/code&gt; subdirectory with exactly the same versions of each dependency.  Whenever you try to recreate a project build, you should start with this command to return the project to the locked state.&lt;/p&gt;
 
@@ -58,7 +80,7 @@
 &lt;pre&gt;&lt;code&gt;melody outdated
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;That&amp;rsquo;s it, for now.  Subsequent building and testing can be done via standard Go toolchain.&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s it! Subsequent building and testing can be done via standard Go toolchain.&lt;/p&gt;
 </description>
     </item>
     

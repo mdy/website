@@ -12,7 +12,7 @@
     <title>Usage - melody documentation</title>
 
     
-    <meta name="description" content="A package cache for Go with sane versioning">
+    <meta name="description" content="Fast and reliable Go dependency manager">
     
     <link rel="canonical" href="https://melody.sh/docs/getting-started/usage/">
     
@@ -165,12 +165,6 @@
     </li>
   
     <li class="anchor">
-      <a title="Commands" href="https://melody.sh/docs/getting-started/commands/">
-        Commands
-      </a>
-    </li>
-  
-    <li class="anchor">
       <a title="Project layout" href="https://melody.sh/docs/getting-started/layout/">
         Project layout
       </a>
@@ -217,11 +211,35 @@
 		<div class="wrapper">
 			<h1>Usage </h1>
 
-			<p>Melody only needs a few simple commands to deliver a lot of power. To get started, please  <s>run <a href="https://github.com/melodysh/melody#contribution-and-improvements"><code>melody init</code></a></s> manually create a <a href="/docs/getting-started/layout"><code>Melody.toml</code></a> file and run <code>melody install</code>.   All required repositories will be installed into the project&rsquo;s <code>vendor</code> subdirectory.</p>
+			<p>Melody only needs a few simple commands to deliver a lot of power. To get started, please  <s>run <a href="https://github.com/melodysh/melody#contribution-and-improvements"><code>melody init</code></a></s> manually create a <a href="/docs/getting-started/layout#melody-toml"><code>Melody.toml</code></a> file and run <code>melody install</code>.   All required repositories will be installed into the project&rsquo;s <code>vendor</code> subdirectory.</p>
+
+<pre><code class="language-bash">melody install
+</code></pre>
+
+<p>If you&rsquo;re running this command for the first time, Melody will resolve the dependency graph via <a href="https://melody.sh/api/">melodyAPI</a> and install the latest possible versions of each repository into the <code>vendor</code> subdirectory.  It will also save the current state in the <a href="/docs/getting-started/layout#melody-lock"><code>Melody.lock</code></a> file.</p>
+
+<p>Locking dependency versions in <code>Melody.lock</code> ensures that subsequent executions of the <code>install</code> command will recreate the <code>vendor</code> subdirectory with exactly the same versions of each dependency.  Whenever you try to recreate a project build, you should start with this command to return the project to the locked state.</p>
+
+<p>If you would like to update a particular dependency in the future, you can run:</p>
+
+<pre><code>melody update github.com/gin-gonic/gin
+</code></pre>
+
+<p>This command will try to make minimal changes to your lockfile while updating that particular dependency.  But if you&rsquo;re feeling adventurous and would like to update everything, run:</p>
+
+<pre><code>melody update
+</code></pre>
+
+<p>Also, you can peek at available updates without making any changes:</p>
+
+<pre><code>melody outdated
+</code></pre>
+
+<p>That&rsquo;s it! Subsequent building and testing can be done via standard Go toolchain.</p>
 
 
 			<aside class="copyright" role="note">
-  &copy; 2016 melodyAPI docs &ndash;
+  &copy; 2016 melody docs &ndash;
   Built with <a href="https://www.gohugo.io" target="_blank">Hugo</a>,
   <a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a>,
   <i class="fa fa-heart" style="color:#DD2222;" title="Love"></i>, and
@@ -254,14 +272,14 @@
 
   <div class="next">
   
-      <a href="https://melody.sh/docs/getting-started/commands/" title="Commands">
+      <a href="https://melody.sh/docs/getting-started/layout/" title="Project layout">
         <span class="direction">
           Next
         </span>
         <div class="page">
           <div class="stretch">
             <div class="title">
-              Commands
+              Project layout
             </div>
           </div>
           <div class="button button-next" role="button" aria-label="Next">
