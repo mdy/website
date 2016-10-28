@@ -12,22 +12,52 @@
   </url>
   
   <url>
-    <loc>https://melody.sh/docs/getting-started/install/</loc>
+    <loc>https://melody.sh/docs/guides/install/</loc>
     <lastmod>2016-03-08T21:07:13+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://melody.sh/docs/getting-started/usage/</loc>
+    <loc>https://melody.sh/docs/guides/usage/</loc>
     <lastmod>2016-03-08T21:07:13+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://melody.sh/docs/getting-started/layout/</loc>
+    <loc>https://melody.sh/docs/reference/layout/</loc>
     <lastmod>2016-03-08T21:07:13+01:00</lastmod>
   </url>
   
   <url>
-    <loc>https://melody.sh/docs/getting-started/dependencies/</loc>
+    <loc>https://melody.sh/docs/reference/dependencies/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://melody.sh/docs/commands/init/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://melody.sh/docs/commands/update/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://melody.sh/docs/commands/install/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://melody.sh/docs/commands/get/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://melody.sh/docs/commands/lint/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://melody.sh/docs/commands/outdated/</loc>
     <lastmod>2016-03-08T21:07:13+01:00</lastmod>
   </url>
   

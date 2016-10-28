@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Commands-rsses on melody documentation</title>
+    <link>https://melody.sh/docs/commands/index.xml</link>
+    <description>Recent content in Commands-rsses on melody documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>melody docs</copyright>
+    <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
+    <atom:link href="https://melody.sh/docs/commands/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Starting a new Go project</title>
+      <link>https://melody.sh/docs/commands/init/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/commands/init/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;melody init
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Generates a Melody.toml file into the current working directory.  It will examine your project when trying to deduce its name and dependencies. Melody assumes that your project is in a standard &lt;code&gt;$GOPATH/src&lt;/code&gt; location.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Update and download dependencies for a Go project</title>
+      <link>https://melody.sh/docs/commands/update/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/commands/update/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;melody update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Install the latest versions of packages specified in Melody.toml. You will use this command when initializing a new project to fetch all the necessary metadata about the dependency tree, and install them into your project&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory.  Once this command succeeds, you will be able to run all standard &lt;code&gt;go&lt;/code&gt; commands without modifying your environment.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;melody update &amp;lt;package1&amp;gt; &amp;lt;package2&amp;gt; ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Once you have your dependencies locked in &lt;code&gt;Melody.lock&lt;/code&gt; by the bare &lt;code&gt;update&lt;/code&gt;, you can use this form to update one or more specific dependencies while trying to minimize changes to the rest of the locked dependency graph.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Install dependencies for a Go project</title>
+      <link>https://melody.sh/docs/commands/install/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/commands/install/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;melody install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Uses the &lt;code&gt;Melody.lock&lt;/code&gt; to install the specified versions of all dependencies into the &lt;code&gt;vendor&lt;/code&gt; subdirectory of your project.  You will use this command to recreate a consistent snapshot of your project&amp;rsquo;s dependencies.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Building and installing a Go project</title>
+      <link>https://melody.sh/docs/commands/get/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/commands/get/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;melody get PACKAGE
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Similar to &lt;code&gt;go get&lt;/code&gt;, this command will download, build, and install a specified Go package.  The specified package will be placed into &lt;code&gt;$GOPATH/src&lt;/code&gt; directory, however, unlike &lt;code&gt;go get&lt;/code&gt;, the dependencies will all be placed into the repo&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory. This way, we can keep the global &lt;code&gt;$GOPATH/src&lt;/code&gt; clean.&lt;/p&gt;
+
+&lt;p&gt;It is a convenience method for the following steps:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;git clone https://PACKAGE $GOPATH/src/PACKAGE
+cd $GOPATH/src/PACKAGE
+melody init
+melody update
+go install . ./cmd/...
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Validate project dependencies</title>
+      <link>https://melody.sh/docs/commands/lint/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/commands/lint/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;melody lint
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Performs an ever-growing suite of checks on your project&amp;rsquo;s &lt;code&gt;Melody.toml&lt;/code&gt;, &lt;code&gt;Melody.lock&lt;/code&gt;, and &lt;code&gt;vendor&lt;/code&gt; subdirectory to ensure correctness and consistency.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Find outdated dependencies for a project</title>
+      <link>https://melody.sh/docs/commands/outdated/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/commands/outdated/</guid>
+      <description>&lt;pre&gt;&lt;code&gt;melody outdated
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Lists all the dependencies of your project that offer newer versions than the ones locked in &lt;code&gt;Melody.lock&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Guides-rsses on melody documentation</title>
+    <link>https://melody.sh/docs/guides/index.xml</link>
+    <description>Recent content in Guides-rsses on melody documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>melody docs</copyright>
+    <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
+    <atom:link href="https://melody.sh/docs/guides/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Install Melody</title>
+      <link>https://melody.sh/docs/guides/install/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/guides/install/</guid>
+      <description>&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/melodysh/melody/releases&#34;&gt;Releases&lt;/a&gt; section of the GitHub repo.  Just download and uncompress the Melody executable file into your &lt;code&gt;bin&lt;/code&gt; directory. To get the latest unstable features or start contributing, you can also &lt;a href=&#34;https://github.com/melodysh/melody#building-from-source&#34;&gt;build Melody from source&lt;/a&gt;.&lt;/p&gt;
+
+&lt;div class=&#34;github-releases&#34;&gt;
+  
+    &lt;script src=&#34;https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js&#34;&gt;&lt;/script&gt;
+    
+  
+  &lt;script&gt;
+    var url = &#34;https://api.github.com/repos/melodysh\/melody/releases&#34;;
+    var parent = $(document.currentScript).closest(&#39;.github-releases&#39;);
+    $.get(url).then(function(releases, ok) {
+      if(ok !== &#34;success&#34; || releases.length &lt; 1) return;
+      var latest = releases[0];
+      var html = $(&#39;&lt;div class=&#34;content&#34;&gt;&#39;);
+      var list = html.append(&#34;&lt;ul&gt;&#34;);
+      console.log(latest.assets);
+
+      for(var i=0; i &lt; latest.assets.length; i++){
+        var a = latest.assets[i];
+        $(&#34;&lt;a/&gt;&#34;)
+          .text(a.name)
+          .attr(&#34;href&#34;, a.browser_download_url)
+          .appendTo($(&#34;&lt;li&gt;&#34;).appendTo(list));
+      }
+
+      parent.append(html);
+    })
+  &lt;/script&gt;
+&lt;/div&gt;
+
+</description>
+    </item>
+    
+    <item>
+      <title>Starting a new Go project</title>
+      <link>https://melody.sh/docs/guides/usage/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/guides/usage/</guid>
+      <description>&lt;p&gt;Melody only needs a few simple commands to deliver a lot of power. To get started, please run &lt;code&gt;melody init&lt;/code&gt; to create a &lt;a href=&#34;https://melody.sh/docs/docs/getting-started/layout#melody-toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; file inside of your project directory, and then &lt;code&gt;melody update&lt;/code&gt; to download and lock your dependencies. All required packages will be installed into the project&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;melody install
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you&amp;rsquo;re running this command for the first time, Melody will resolve the dependency graph via &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; and install the latest possible versions of each repository into the &lt;code&gt;vendor&lt;/code&gt; subdirectory.  It will also save the current state in the &lt;a href=&#34;https://melody.sh/docs/docs/getting-started/layout#melody-lock&#34;&gt;&lt;code&gt;Melody.lock&lt;/code&gt;&lt;/a&gt; file.&lt;/p&gt;
+
+&lt;p&gt;Locking dependency versions in &lt;code&gt;Melody.lock&lt;/code&gt; ensures that subsequent executions of the &lt;code&gt;install&lt;/code&gt; command will recreate the &lt;code&gt;vendor&lt;/code&gt; subdirectory with exactly the same versions of each dependency.  Whenever you try to recreate a project build, you should start with this command to return the project to the locked state.&lt;/p&gt;
+
+&lt;p&gt;If you would like to update a particular dependency in the future, you can run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;melody update github.com/gin-gonic/gin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This command will try to make minimal changes to your lockfile while updating that particular dependency.  But if you&amp;rsquo;re feeling adventurous and would like to update everything, run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;melody update
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Also, you can peek at available updates without making any changes:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;melody outdated
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;That&amp;rsquo;s it! Subsequent building and testing can be done via standard Go toolchain.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

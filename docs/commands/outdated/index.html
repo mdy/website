@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>GraphQL Enums - melodyAPI documentation</title>
+    <title>Find outdated dependencies for a project - melody documentation</title>
 
     
-    <meta name="description" content="A package cache for Go with sane versioning">
+    <meta name="description" content="Fast and reliable Go dependency manager">
     
-    <link rel="canonical" href="https://melody.sh/docs/api/reference/enums/">
+    <link rel="canonical" href="https://melody.sh/docs/commands/outdated/">
     
 
-    <meta property="og:url" content="https://melody.sh/docs/api/reference/enums/">
-    <meta property="og:title" content="melodyAPI documentation">
+    <meta property="og:url" content="https://melody.sh/docs/commands/outdated/">
+    <meta property="og:title" content="melody documentation">
     
-    <meta name="apple-mobile-web-app-title" content="melodyAPI documentation">
+    <meta name="apple-mobile-web-app-title" content="melody documentation">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        GraphQL Enum
+        Find outdated dependencies for a project
       </div>
     </div>
 
@@ -140,38 +140,82 @@
           
 
   <li>
-<a  title="Introduction" href="https://melody.sh/docs/api/">
-   Introduction
-</a>
-
-</li>
-
-  <li>
-<a  title="Getting started" href="https://melody.sh/docs/api/getting-started/">
-   Getting started
-</a>
-
-</li>
-
-  <li>
-<a  title="GraphQL Reference" href="https://melody.sh/docs/">
-   GraphQL Reference
+<a  title="Guides" href="https://melody.sh/docs/">
+   Guides
 </a>
 
 <ul>
     <li class="anchor">
-        <a title="Queries" href="api/reference/">
-          Queries
+        <a title="Install Melody" href="https://melody.sh/docs/guides/install/">
+          Install Melody
         </a>
       </li>
     <li class="anchor">
-        <a title="Objects" href="api/reference/objects/">
-          Objects
+        <a title="Starting a new Go project" href="https://melody.sh/docs/guides/usage/">
+          Starting a new Go project
+        </a>
+      </li>
+    </ul>
+</li>
+
+  <li>
+<a  title="Commands" href="https://melody.sh/docs/">
+   Commands
+</a>
+
+<ul>
+    <li class="anchor">
+        <a title="Starting a new Go project" href="https://melody.sh/docs/commands/init/">
+          melody init
         </a>
       </li>
     <li class="anchor">
-        <a title="Enums" href="api/reference/enums/">
-          Enums
+        <a title="Update and download dependencies for a Go project" href="https://melody.sh/docs/commands/update/">
+          melody update
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Install dependencies for a Go project" href="https://melody.sh/docs/commands/install/">
+          melody install
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Building and installing a Go project" href="https://melody.sh/docs/commands/get/">
+          melody get
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Validate project dependencies" href="https://melody.sh/docs/commands/lint/">
+          melody lint
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Find outdated dependencies for a project" href="https://melody.sh/docs/commands/outdated/">
+          melody outdated
+        </a>
+      </li>
+    </ul>
+</li>
+
+  <li>
+<a  title="Reference" href="https://melody.sh/docs/">
+   Reference
+</a>
+
+<ul>
+    <li class="anchor">
+        <a title="Project layout" href="https://melody.sh/docs/reference/layout/">
+          Project layout
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Specifying dependencies" href="https://melody.sh/docs/reference/dependencies/">
+          Specifying dependencies
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="melodyAPI" href="api">
+          melodyAPI
         </a>
       </li>
     </ul>
@@ -191,30 +235,16 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>GraphQL Enums </h1>
+			<h1>Find outdated dependencies for a project </h1>
 
-			
-
-<h2 id="DependencyScope">DependencyScope</h2>
-
-<pre><code class="language-graphql">enum DependencyScope {
-  BUILD
-  TEST
-}
+			<pre><code>melody outdated
 </code></pre>
 
-<p>Dependency type corresponding to <code>Imports</code> vs. <code>TestImports</code></p>
-
-<h3 id="values">Values</h3>
-
-<ul>
-<li><strong>BUILD</strong> &ndash; Marks a dependency extracted from non-test files</li>
-<li><strong>TEST</strong> &ndash; Marks a dependency extracted from <code>*_test.go</code> files</li>
-</ul>
+<p>Lists all the dependencies of your project that offer newer versions than the ones locked in <code>Melody.lock</code>.</p>
 
 
 			<aside class="copyright" role="note">
-  &copy; 2016 melodyAPI docs &ndash;
+  &copy; 2016 melody docs &ndash;
   Built with <a href="https://www.gohugo.io" target="_blank">Hugo</a>,
   <a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a>,
   <i class="fa fa-heart" style="color:#DD2222;" title="Love"></i>, and
@@ -227,7 +257,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://melody.sh/docs/api/reference/objects/" title="GraphQL Objects">
+      <a href="https://melody.sh/docs/commands/lint/" title="Validate project dependencies">
         <span class="direction">
           Previous
         </span>
@@ -237,7 +267,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              GraphQL Objects
+              Validate project dependencies
             </div>
           </div>
         </div>

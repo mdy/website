@@ -9,18 +9,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>GraphQL Enums - melodyAPI documentation</title>
+    <title>Starting a new Go project - melody documentation</title>
 
     
-    <meta name="description" content="A package cache for Go with sane versioning">
+    <meta name="description" content="Fast and reliable Go dependency manager">
     
-    <link rel="canonical" href="https://melody.sh/docs/api/reference/enums/">
+    <link rel="canonical" href="https://melody.sh/docs/guides/usage/">
     
 
-    <meta property="og:url" content="https://melody.sh/docs/api/reference/enums/">
-    <meta property="og:title" content="melodyAPI documentation">
+    <meta property="og:url" content="https://melody.sh/docs/guides/usage/">
+    <meta property="og:title" content="melody documentation">
     
-    <meta name="apple-mobile-web-app-title" content="melodyAPI documentation">
+    <meta name="apple-mobile-web-app-title" content="melody documentation">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
@@ -94,7 +94,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        GraphQL Enum
+        Starting a new Go project
       </div>
     </div>
 
@@ -140,38 +140,82 @@
           
 
   <li>
-<a  title="Introduction" href="https://melody.sh/docs/api/">
-   Introduction
-</a>
-
-</li>
-
-  <li>
-<a  title="Getting started" href="https://melody.sh/docs/api/getting-started/">
-   Getting started
-</a>
-
-</li>
-
-  <li>
-<a  title="GraphQL Reference" href="https://melody.sh/docs/">
-   GraphQL Reference
+<a  title="Guides" href="https://melody.sh/docs/">
+   Guides
 </a>
 
 <ul>
     <li class="anchor">
-        <a title="Queries" href="api/reference/">
-          Queries
+        <a title="Install Melody" href="https://melody.sh/docs/guides/install/">
+          Install Melody
         </a>
       </li>
     <li class="anchor">
-        <a title="Objects" href="api/reference/objects/">
-          Objects
+        <a title="Starting a new Go project" href="https://melody.sh/docs/guides/usage/">
+          Starting a new Go project
+        </a>
+      </li>
+    </ul>
+</li>
+
+  <li>
+<a  title="Commands" href="https://melody.sh/docs/">
+   Commands
+</a>
+
+<ul>
+    <li class="anchor">
+        <a title="Starting a new Go project" href="https://melody.sh/docs/commands/init/">
+          melody init
         </a>
       </li>
     <li class="anchor">
-        <a title="Enums" href="api/reference/enums/">
-          Enums
+        <a title="Update and download dependencies for a Go project" href="https://melody.sh/docs/commands/update/">
+          melody update
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Install dependencies for a Go project" href="https://melody.sh/docs/commands/install/">
+          melody install
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Building and installing a Go project" href="https://melody.sh/docs/commands/get/">
+          melody get
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Validate project dependencies" href="https://melody.sh/docs/commands/lint/">
+          melody lint
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Find outdated dependencies for a project" href="https://melody.sh/docs/commands/outdated/">
+          melody outdated
+        </a>
+      </li>
+    </ul>
+</li>
+
+  <li>
+<a  title="Reference" href="https://melody.sh/docs/">
+   Reference
+</a>
+
+<ul>
+    <li class="anchor">
+        <a title="Project layout" href="https://melody.sh/docs/reference/layout/">
+          Project layout
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="Specifying dependencies" href="https://melody.sh/docs/reference/dependencies/">
+          Specifying dependencies
+        </a>
+      </li>
+    <li class="anchor">
+        <a title="melodyAPI" href="api">
+          melodyAPI
         </a>
       </li>
     </ul>
@@ -191,30 +235,37 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>GraphQL Enums </h1>
+			<h1>Starting a new Go project </h1>
 
-			
+			<p>Melody only needs a few simple commands to deliver a lot of power. To get started, please run <code>melody init</code> to create a <a href="/docs/getting-started/layout#melody-toml"><code>Melody.toml</code></a> file inside of your project directory, and then <code>melody update</code> to download and lock your dependencies. All required packages will be installed into the project&rsquo;s <code>vendor</code> subdirectory.</p>
 
-<h2 id="DependencyScope">DependencyScope</h2>
-
-<pre><code class="language-graphql">enum DependencyScope {
-  BUILD
-  TEST
-}
+<pre><code class="language-bash">melody install
 </code></pre>
 
-<p>Dependency type corresponding to <code>Imports</code> vs. <code>TestImports</code></p>
+<p>If you&rsquo;re running this command for the first time, Melody will resolve the dependency graph via <a href="https://melody.sh/api/">melodyAPI</a> and install the latest possible versions of each repository into the <code>vendor</code> subdirectory.  It will also save the current state in the <a href="/docs/getting-started/layout#melody-lock"><code>Melody.lock</code></a> file.</p>
 
-<h3 id="values">Values</h3>
+<p>Locking dependency versions in <code>Melody.lock</code> ensures that subsequent executions of the <code>install</code> command will recreate the <code>vendor</code> subdirectory with exactly the same versions of each dependency.  Whenever you try to recreate a project build, you should start with this command to return the project to the locked state.</p>
 
-<ul>
-<li><strong>BUILD</strong> &ndash; Marks a dependency extracted from non-test files</li>
-<li><strong>TEST</strong> &ndash; Marks a dependency extracted from <code>*_test.go</code> files</li>
-</ul>
+<p>If you would like to update a particular dependency in the future, you can run:</p>
+
+<pre><code>melody update github.com/gin-gonic/gin
+</code></pre>
+
+<p>This command will try to make minimal changes to your lockfile while updating that particular dependency.  But if you&rsquo;re feeling adventurous and would like to update everything, run:</p>
+
+<pre><code>melody update
+</code></pre>
+
+<p>Also, you can peek at available updates without making any changes:</p>
+
+<pre><code>melody outdated
+</code></pre>
+
+<p>That&rsquo;s it! Subsequent building and testing can be done via standard Go toolchain.</p>
 
 
 			<aside class="copyright" role="note">
-  &copy; 2016 melodyAPI docs &ndash;
+  &copy; 2016 melody docs &ndash;
   Built with <a href="https://www.gohugo.io" target="_blank">Hugo</a>,
   <a href="http://github.com/digitalcraftsman/hugo-material-docs" target="_blank">Material</a>,
   <i class="fa fa-heart" style="color:#DD2222;" title="Love"></i>, and
@@ -227,7 +278,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://melody.sh/docs/api/reference/objects/" title="GraphQL Objects">
+      <a href="https://melody.sh/docs/guides/install/" title="Install Melody">
         <span class="direction">
           Previous
         </span>
@@ -237,7 +288,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              GraphQL Objects
+              Install Melody
             </div>
           </div>
         </div>
@@ -246,6 +297,22 @@
   </div>
 
   <div class="next">
+  
+      <a href="https://melody.sh/docs/reference/layout/" title="Project layout">
+        <span class="direction">
+          Next
+        </span>
+        <div class="page">
+          <div class="stretch">
+            <div class="title">
+              Project layout
+            </div>
+          </div>
+          <div class="button button-next" role="button" aria-label="Next">
+            <i class="icon icon-forward"></i>
+          </div>
+        </div>
+      </a>
   
   </div>
 </nav>
