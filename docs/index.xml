@@ -79,6 +79,11 @@
   &lt;/script&gt;
 &lt;/div&gt;
 
+
+&lt;p&gt;To check that Melody is correctly installed, run:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;melody --version
+&lt;/code&gt;&lt;/pre&gt;
 </description>
     </item>
     
