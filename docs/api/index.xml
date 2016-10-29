@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Api-rsses on melodyAPI documentation</title>
+    <title>Apis on melodyAPI documentation</title>
     <link>https://melody.sh/docs/api/index.xml</link>
-    <description>Recent content in Api-rsses on melodyAPI documentation</description>
+    <description>Recent content in Apis on melodyAPI documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>melodyAPI docs</copyright>
