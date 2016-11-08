@@ -29,7 +29,7 @@
 
 &lt;h3 id=&#34;melody-toml&#34;&gt;Melody.toml&lt;/h3&gt;
 
-&lt;p&gt;Both configuration and lockfile are in &lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;TOML&lt;/a&gt; configuration format.  Please take a look at &lt;a href=&#34;https://github.com/melodysh/melody/blob/master/Melody.toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; for this repository for an example with inline documentation on how to get started.&lt;/p&gt;
+&lt;p&gt;Both configuration and lockfile are in &lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;TOML&lt;/a&gt; configuration format.  Please take a look at &lt;a href=&#34;https://github.com/mdy/melody/blob/master/Melody.toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; for this repository for an example with inline documentation on how to get started.&lt;/p&gt;
 
 &lt;h3 id=&#34;melody-lock&#34;&gt;Melody.lock&lt;/h3&gt;
 

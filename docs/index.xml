@@ -18,7 +18,7 @@
       <guid>https://melody.sh/docs/</guid>
       <description>&lt;p&gt;Melody is a dependency manager for your Go code. It allows you to quickly build complex projects by easily importing private packages from colleagues and open source packages from any public source.  Despite a growing network of dependencies, it ensure fast, consistent, and repeatable builds for your projects.&lt;/p&gt;
 
-&lt;p&gt;We&amp;rsquo;ve adopted the &lt;a href=&#34;https://github.com/melodysh/melody#credits-and-inspiration&#34;&gt;following principles&lt;/a&gt; to make this happen:&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;ve adopted the &lt;a href=&#34;https://github.com/mdy/melody#credits-and-inspiration&#34;&gt;following principles&lt;/a&gt; to make this happen:&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;strong&gt;All dependencies are vendored&lt;/strong&gt; inside of a project.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn-go-version&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn-go-version&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; This enables fine-grained control of versioning, and prevents multiple projects from clobbering shared dependencies in a common path (&lt;code&gt;$GOPATH/src&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
@@ -49,7 +49,7 @@
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
       <guid>https://melody.sh/docs/guides/install/</guid>
-      <description>&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/melodysh/melody/releases&#34;&gt;Releases&lt;/a&gt; section of the GitHub repo.  Just download and uncompress the Melody executable file into your &lt;code&gt;bin&lt;/code&gt; directory. To get the latest unstable features or start contributing, you can also &lt;a href=&#34;https://github.com/melodysh/melody#building-from-source&#34;&gt;build Melody from source&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/mdy/melody/releases&#34;&gt;Releases&lt;/a&gt; section of the GitHub repo.  Just download and uncompress the Melody executable file into your &lt;code&gt;bin&lt;/code&gt; directory. To get the latest unstable features or start contributing, you can also &lt;a href=&#34;https://github.com/mdy/melody#building-from-source&#34;&gt;build Melody from source&lt;/a&gt;.&lt;/p&gt;
 
 &lt;div class=&#34;github-releases&#34;&gt;
   
@@ -57,7 +57,7 @@
     
   
   &lt;script&gt;
-    var url = &#34;https://api.github.com/repos/melodysh\/melody/releases&#34;;
+    var url = &#34;https://api.github.com/repos/mdy\/melody/releases&#34;;
     var parent = $(document.currentScript).closest(&#39;.github-releases&#39;);
     $.get(url).then(function(releases, ok) {
       if(ok !== &#34;success&#34; || releases.length &lt; 1) return;
@@ -140,7 +140,7 @@
 
 &lt;h3 id=&#34;melody-toml&#34;&gt;Melody.toml&lt;/h3&gt;
 
-&lt;p&gt;Both configuration and lockfile are in &lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;TOML&lt;/a&gt; configuration format.  Please take a look at &lt;a href=&#34;https://github.com/melodysh/melody/blob/master/Melody.toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; for this repository for an example with inline documentation on how to get started.&lt;/p&gt;
+&lt;p&gt;Both configuration and lockfile are in &lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;TOML&lt;/a&gt; configuration format.  Please take a look at &lt;a href=&#34;https://github.com/mdy/melody/blob/master/Melody.toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; for this repository for an example with inline documentation on how to get started.&lt;/p&gt;
 
 &lt;h3 id=&#34;melody-lock&#34;&gt;Melody.lock&lt;/h3&gt;
 

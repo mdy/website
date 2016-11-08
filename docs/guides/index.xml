@@ -16,7 +16,7 @@
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
       <guid>https://melody.sh/docs/guides/install/</guid>
-      <description>&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/melodysh/melody/releases&#34;&gt;Releases&lt;/a&gt; section of the GitHub repo.  Just download and uncompress the Melody executable file into your &lt;code&gt;bin&lt;/code&gt; directory. To get the latest unstable features or start contributing, you can also &lt;a href=&#34;https://github.com/melodysh/melody#building-from-source&#34;&gt;build Melody from source&lt;/a&gt;.&lt;/p&gt;
+      <description>&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/mdy/melody/releases&#34;&gt;Releases&lt;/a&gt; section of the GitHub repo.  Just download and uncompress the Melody executable file into your &lt;code&gt;bin&lt;/code&gt; directory. To get the latest unstable features or start contributing, you can also &lt;a href=&#34;https://github.com/mdy/melody#building-from-source&#34;&gt;build Melody from source&lt;/a&gt;.&lt;/p&gt;
 
 &lt;div class=&#34;github-releases&#34;&gt;
   
@@ -24,7 +24,7 @@
     
   
   &lt;script&gt;
-    var url = &#34;https://api.github.com/repos/melodysh\/melody/releases&#34;;
+    var url = &#34;https://api.github.com/repos/mdy\/melody/releases&#34;;
     var parent = $(document.currentScript).closest(&#39;.github-releases&#39;);
     $.get(url).then(function(releases, ok) {
       if(ok !== &#34;success&#34; || releases.length &lt; 1) return;
