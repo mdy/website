@@ -11,45 +11,14 @@
     <atom:link href="https://melody.sh/docs/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Melody - Dependency Manager for Go</title>
-      <link>https://melody.sh/docs/</link>
-      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/</guid>
-      <description>&lt;p&gt;Melody is a dependency manager for your Go code. It allows you to quickly build complex projects by easily importing private packages from colleagues and open source packages from any public source.  Despite a growing network of dependencies, it ensure fast, consistent, and repeatable builds for your projects.&lt;/p&gt;
-
-&lt;p&gt;We&amp;rsquo;ve adopted the &lt;a href=&#34;https://github.com/mdy/melody#credits-and-inspiration&#34;&gt;following principles&lt;/a&gt; to make this happen:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;All dependencies are vendored&lt;/strong&gt; inside of a project.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn-go-version&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn-go-version&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; This enables fine-grained control of versioning, and prevents multiple projects from clobbering shared dependencies in a common path (&lt;code&gt;$GOPATH/src&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Human-friendly config file&lt;/strong&gt; explicitly specifies project details and dependencies with corresponding version restrictions.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Human-readable lock file&lt;/strong&gt; to record and track exact revision of each installed dependency. This file is used to deterministically recreate and verify the &lt;code&gt;vendor&lt;/code&gt; directory.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cloud-assisted repository indexing and caching&lt;/strong&gt; allows for much faster and more-reliable builds.  &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; integration makes sure your build is fast, and that a deleted repository or tag does not break future builds. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn-cold-cache&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn-cold-cache&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;footnotes&#34;&gt;
-
-&lt;hr /&gt;
-
-&lt;ol&gt;
-&lt;li id=&#34;fn:fn-go-version&#34;&gt;Melody requires Go 1.6+. Although it may work with GO15VENDOREXPERIMENT flag, Go 1.5 is not supported.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn-go-version&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;li id=&#34;fn:fn-cold-cache&#34;&gt;Please note that the &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; cache may be cold during the beta period due to a low traffic.  This may cause slowness during your installs, but it will get faster as our userbase grows.
- &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn-cold-cache&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/div&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Install Melody</title>
-      <link>https://melody.sh/docs/guides/install/</link>
+      <link>https://melody.sh/docs/howto/install/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
-      <guid>https://melody.sh/docs/guides/install/</guid>
+      <guid>https://melody.sh/docs/howto/install/</guid>
       <description>&lt;p&gt;Binary builds are available in the &lt;a href=&#34;https://github.com/mdy/melody/releases&#34;&gt;Releases&lt;/a&gt; section of the GitHub repo.  Just download and uncompress the Melody executable file into your &lt;code&gt;bin&lt;/code&gt; directory. To get the latest unstable features or start contributing, you can also &lt;a href=&#34;https://github.com/mdy/melody#building-from-source&#34;&gt;build Melody from source&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;div class=&#34;github-releases&#34;&gt;
   
@@ -83,17 +52,18 @@
 &lt;p&gt;To check that Melody is correctly installed, run:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;melody --version
-&lt;/code&gt;&lt;/pre&gt;
-</description>
+&lt;/code&gt;&lt;/pre&gt;</description>
     </item>
     
     <item>
-      <title>Starting a new Go project</title>
-      <link>https://melody.sh/docs/guides/usage/</link>
+      <title>Start a new Go project</title>
+      <link>https://melody.sh/docs/howto/usage/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
-      <guid>https://melody.sh/docs/guides/usage/</guid>
+      <guid>https://melody.sh/docs/howto/usage/</guid>
       <description>&lt;p&gt;Melody only needs a few simple commands to deliver a lot of power. To get started, please run &lt;code&gt;melody init&lt;/code&gt; to create a &lt;a href=&#34;https://melody.sh/docs/docs/getting-started/layout#melody-toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; file inside of your project directory, and then &lt;code&gt;melody update&lt;/code&gt; to download and lock your dependencies. All required packages will be installed into the project&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;melody install
 &lt;/code&gt;&lt;/pre&gt;
@@ -117,64 +87,11 @@
 &lt;pre&gt;&lt;code&gt;melody outdated
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;That&amp;rsquo;s it! Subsequent building and testing can be done via standard Go toolchain.&lt;/p&gt;
-</description>
+&lt;p&gt;That&amp;rsquo;s it! Subsequent building and testing can be done via standard Go toolchain.&lt;/p&gt;</description>
     </item>
     
     <item>
-      <title>Project layout</title>
-      <link>https://melody.sh/docs/reference/layout/</link>
-      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/reference/layout/</guid>
-      <description>
-
-&lt;p&gt;Melody integrates with the standard $GOPATH layout that you&amp;rsquo;ve been using, you just need to add &lt;code&gt;Melody.{toml|lock}&lt;/code&gt; files at the root of your project:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$GOPATH/src/path/to/project
-├── Melody.lock
-├── Melody.toml
-├── main.go
-└── ...
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;melody-toml&#34;&gt;Melody.toml&lt;/h3&gt;
-
-&lt;p&gt;Both configuration and lockfile are in &lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;TOML&lt;/a&gt; configuration format.  Please take a look at &lt;a href=&#34;https://github.com/mdy/melody/blob/master/Melody.toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; for this repository for an example with inline documentation on how to get started.&lt;/p&gt;
-
-&lt;h3 id=&#34;melody-lock&#34;&gt;Melody.lock&lt;/h3&gt;
-
-&lt;p&gt;The lockfile is auto-generated and should not be modified by hand.  We highly recommend committing this file into your repository to enable repeatable outcome of &lt;code&gt;melody install&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Specifying dependencies</title>
-      <link>https://melody.sh/docs/reference/dependencies/</link>
-      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
-      
-      <guid>https://melody.sh/docs/reference/dependencies/</guid>
-      <description>
-
-&lt;p&gt;When you specify dependencies in &lt;code&gt;Melody.toml&lt;/code&gt;, you can restrict to a range or an exact version/revision that Melody should install.  These versions are extracted from repository&amp;rsquo;s &lt;a href=&#34;http://semver.org&#34;&gt;SemVer&lt;/a&gt;-compatible tags or auto-generated by melodyAPI.  We support the following dependency restrictions:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; or &lt;code&gt;&amp;quot;*&amp;quot;&lt;/code&gt; specifies the latest tagged release version&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;quot;head&amp;quot;&lt;/code&gt; specifies the latest possible revision in main branch&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;quot;1.2.3&amp;quot;&lt;/code&gt; will only install a specific version (tagged or auto-generated)&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&amp;quot;#sha&amp;quot;&lt;/code&gt; will install a specific revision of the repo&lt;/li&gt;
-&lt;li&gt;You can also use ranges similar to &lt;a href=&#34;https://github.com/npm/node-semver#ranges&#34;&gt;npm-semver&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;TODO: Expand SemVer range docs here&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;importing-local-dependencies&#34;&gt;Importing local dependencies&lt;/h3&gt;
-
-&lt;p&gt;If you would like to import a package from another local repository, unfortunately at this time Melody cannot help you. Instead, we suggest temporarily removing that dependency from your &lt;code&gt;Melody.toml&lt;/code&gt; and &lt;code&gt;vendor&lt;/code&gt; subdirectory, and letting Go toolchain reference that local dependency via GOPATH.  Once you&amp;rsquo;ve pushed the local changes to the origin server, you can return to vendoring that dependency via Melody.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Starting a new Go project</title>
+      <title>Set up a new Go project</title>
       <link>https://melody.sh/docs/commands/init/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -226,9 +143,9 @@
       <description>&lt;pre&gt;&lt;code&gt;melody get PACKAGE
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Similar to &lt;code&gt;go get&lt;/code&gt;, this command will download, build, and install a specified Go package.  The specified package will be placed into &lt;code&gt;$GOPATH/src&lt;/code&gt; directory, however, unlike &lt;code&gt;go get&lt;/code&gt;, the dependencies will all be placed into the repo&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory. This way, we can keep the global &lt;code&gt;$GOPATH/src&lt;/code&gt; clean.&lt;/p&gt;
+&lt;p&gt;Similar to &lt;code&gt;go get&lt;/code&gt;, this command will download, build, and install a specified Go package.  The package will be placed into &lt;code&gt;$GOPATH/src&lt;/code&gt; directory, however, unlike &lt;code&gt;go get&lt;/code&gt;, its dependencies will be placed into the repo&amp;rsquo;s &lt;code&gt;vendor&lt;/code&gt; subdirectory. This way, we can keep the global &lt;code&gt;$GOPATH/src&lt;/code&gt; clean.&lt;/p&gt;
 
-&lt;p&gt;It is a convenience method for the following steps:&lt;/p&gt;
+&lt;p&gt;It is a convenience method for the following procedure:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;git clone https://PACKAGE $GOPATH/src/PACKAGE
 cd $GOPATH/src/PACKAGE
@@ -262,6 +179,91 @@ go install . ./cmd/...
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;Lists all the dependencies of your project that offer newer versions than the ones locked in &lt;code&gt;Melody.lock&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Go project layout</title>
+      <link>https://melody.sh/docs/reference/layout/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/reference/layout/</guid>
+      <description>
+
+&lt;p&gt;Melody integrates with the standard $GOPATH layout that you&amp;rsquo;ve been using, you just need to add &lt;code&gt;Melody.{toml|lock}&lt;/code&gt; files at the root of your project:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$GOPATH/src/path/to/project
+├── Melody.lock
+├── Melody.toml
+├── main.go
+└── ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;melody-toml&#34;&gt;Melody.toml&lt;/h3&gt;
+
+&lt;p&gt;Both configuration and lockfile are in &lt;a href=&#34;https://github.com/toml-lang/toml&#34;&gt;TOML&lt;/a&gt; configuration format.  Please take a look at &lt;a href=&#34;https://github.com/mdy/melody/blob/master/Melody.toml&#34;&gt;&lt;code&gt;Melody.toml&lt;/code&gt;&lt;/a&gt; for this repository for an example with inline documentation on how to get started.&lt;/p&gt;
+
+&lt;h3 id=&#34;melody-lock&#34;&gt;Melody.lock&lt;/h3&gt;
+
+&lt;p&gt;The lockfile is auto-generated and should not be modified by hand.  We highly recommend committing this file into your repository to enable repeatable outcome of &lt;code&gt;melody install&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Specifying dependencies</title>
+      <link>https://melody.sh/docs/reference/dependencies/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/reference/dependencies/</guid>
+      <description>
+
+&lt;p&gt;When you specify dependencies in &lt;code&gt;Melody.toml&lt;/code&gt;, you can restrict to a range or an exact version/revision that Melody should install.  These versions are extracted from repository&amp;rsquo;s &lt;a href=&#34;http://semver.org&#34;&gt;SemVer&lt;/a&gt;-compatible tags or auto-generated by melodyAPI.  We support the following dependency restrictions:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;&amp;quot;&lt;/code&gt; or &lt;code&gt;&amp;quot;*&amp;quot;&lt;/code&gt; specifies the latest tagged release version&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;head&amp;quot;&lt;/code&gt; specifies the latest possible revision in main branch&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;1.2.3&amp;quot;&lt;/code&gt; will only install a specific version (tagged or auto-generated)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;quot;#sha&amp;quot;&lt;/code&gt; will install a specific revision of the repo&lt;/li&gt;
+&lt;li&gt;You can also use ranges similar to &lt;a href=&#34;https://github.com/npm/node-semver#ranges&#34;&gt;npm-semver&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;TODO: Expand SemVer range docs here&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;importing-local-dependencies&#34;&gt;Importing local dependencies&lt;/h3&gt;
+
+&lt;p&gt;If you would like to import a package from another local repository, unfortunately at this time Melody cannot help you. Instead, we suggest temporarily removing that dependency from your &lt;code&gt;Melody.toml&lt;/code&gt; and &lt;code&gt;vendor&lt;/code&gt; subdirectory, and letting Go toolchain reference that local dependency via GOPATH.  Once you&amp;rsquo;ve pushed the local changes to the origin server, you can return to vendoring that dependency via Melody.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Melody - Dependency Manager for Go</title>
+      <link>https://melody.sh/docs/</link>
+      <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
+      
+      <guid>https://melody.sh/docs/</guid>
+      <description>&lt;p&gt;Melody is a dependency manager for your Go code. It allows you to quickly build complex projects by easily importing private packages from colleagues and open source packages from any public source.  Despite a growing network of dependencies, it ensure fast, consistent, and repeatable builds for your projects.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve adopted the &lt;a href=&#34;https://github.com/mdy/melody#credits-and-inspiration&#34;&gt;following principles&lt;/a&gt; to make this happen:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;All dependencies are vendored&lt;/strong&gt; inside of a project.&lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn-go-version&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn-go-version&#34;&gt;1&lt;/a&gt;&lt;/sup&gt; This enables fine-grained control of versioning, and prevents multiple projects from clobbering shared dependencies in a common path (&lt;code&gt;$GOPATH/src&lt;/code&gt;).&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Human-friendly config file&lt;/strong&gt; explicitly specifies project details and dependencies with corresponding version restrictions.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Human-readable lock file&lt;/strong&gt; to record and track exact revision of each installed dependency. This file is used to deterministically recreate and verify the &lt;code&gt;vendor&lt;/code&gt; directory.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Cloud-assisted repository indexing and caching&lt;/strong&gt; allows for much faster and more-reliable builds.  &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; integration makes sure your build is fast, and that a deleted repository or tag does not break future builds. &lt;sup class=&#34;footnote-ref&#34; id=&#34;fnref:fn-cold-cache&#34;&gt;&lt;a rel=&#34;footnote&#34; href=&#34;#fn:fn-cold-cache&#34;&gt;2&lt;/a&gt;&lt;/sup&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;footnotes&#34;&gt;
+
+&lt;hr /&gt;
+
+&lt;ol&gt;
+&lt;li id=&#34;fn:fn-go-version&#34;&gt;Melody requires Go 1.6+. Although it may work with GO15VENDOREXPERIMENT flag, Go 1.5 is not supported.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn-go-version&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;li id=&#34;fn:fn-cold-cache&#34;&gt;Please note that the &lt;a href=&#34;https://melody.sh/api/&#34;&gt;melodyAPI&lt;/a&gt; cache may be cold during the beta period due to a low traffic.  This may cause slowness during your installs, but it will get faster as our userbase grows.
+ &lt;a class=&#34;footnote-return&#34; href=&#34;#fnref:fn-cold-cache&#34;&gt;↩&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 </description>
     </item>
     

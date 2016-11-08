@@ -9,15 +9,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=10" />
-    <title>Commands - melody documentation</title>
+    <title>Howtos - melody documentation</title>
 
     
     <meta name="description" content="Fast and reliable Go dependency manager">
     
-    <link rel="canonical" href="https://melody.sh/docs/commands/">
+    <link rel="canonical" href="https://melody.sh/docs/howto/">
     
 
-    <meta property="og:url" content="https://melody.sh/docs/commands/">
+    <meta property="og:url" content="https://melody.sh/docs/howto/">
     <meta property="og:title" content="melody documentation">
     
     <meta name="apple-mobile-web-app-title" content="melody documentation">
@@ -69,8 +69,8 @@
     <script src="https://melody.sh/docs/javascripts/modernizr.js"></script>
 
     
-    <link href="https://melody.sh/docs/commands/index.xml" rel="alternate" type="application/rss+xml" title="melody documentation" />
-    <link href="https://melody.sh/docs/commands/index.xml" rel="feed" type="application/rss+xml" title="melody documentation" />
+    <link href="https://melody.sh/docs/howto/index.xml" rel="alternate" type="application/rss+xml" title="melody documentation" />
+    <link href="https://melody.sh/docs/howto/index.xml" rel="feed" type="application/rss+xml" title="melody documentation" />
     
 
   </head>
@@ -95,7 +95,7 @@
     </div>
     <div class="stretch">
       <div class="title">
-        Command
+        Howto
       </div>
     </div>
 
@@ -233,63 +233,28 @@
 
 	<article class="article">
 		<div class="wrapper">
-			<h1>Pages in Command</h1>
+			<h1>Pages in Howto</h1>
 
 			
-			<a href="https://melody.sh/docs/commands/init/" title="Set up a new Go project">
-				<h2>Set up a new Go project</h2>
+			<a href="https://melody.sh/docs/howto/install/" title="Install Melody">
+				<h2>Install Melody</h2>
 			</a>
 
 			<br>
-			melody init  Generates a Melody.toml file into the current working directory. It will examine your project when trying to deduce its name and dependencies. Melody assumes that your project is in a standard $GOPATH/src location.
+			Binary builds are available in the <a href="https://github.com/mdy/melody/releases">Releases</a> section of the GitHub repo.  Just download and uncompress the Melody executable file into your <code>bin</code> directory. To get the latest unstable features or start contributing, you can also <a href="https://github.com/mdy/melody#building-from-source">build Melody from source</a>.</p>
+
+<p>
 
 			<hr>
 			
-			<a href="https://melody.sh/docs/commands/update/" title="Update and download dependencies for a Go project">
-				<h2>Update and download dependencies for a Go project</h2>
+			<a href="https://melody.sh/docs/howto/usage/" title="Start a new Go project">
+				<h2>Start a new Go project</h2>
 			</a>
 
 			<br>
-			melody update  Install the latest versions of packages specified in Melody.toml. You will use this command when initializing a new project to fetch all the necessary metadata about the dependency tree, and install them into your project&rsquo;s vendor subdirectory. Once this command succeeds, you will be able to run all standard go commands without modifying your environment.
-melody update &lt;package1&gt; &lt;package2&gt; &hellip;  Once you have your dependencies locked in Melody.
+			Melody only needs a few simple commands to deliver a lot of power. To get started, please run <code>melody init</code> to create a <a href="/docs/getting-started/layout#melody-toml"><code>Melody.toml</code></a> file inside of your project directory, and then <code>melody update</code> to download and lock your dependencies. All required packages will be installed into the project&rsquo;s <code>vendor</code> subdirectory.</p>
 
-			<hr>
-			
-			<a href="https://melody.sh/docs/commands/install/" title="Install dependencies for a Go project">
-				<h2>Install dependencies for a Go project</h2>
-			</a>
-
-			<br>
-			melody install  Uses the Melody.lock to install the specified versions of all dependencies into the vendor subdirectory of your project. You will use this command to recreate a consistent snapshot of your project&rsquo;s dependencies.
-
-			<hr>
-			
-			<a href="https://melody.sh/docs/commands/get/" title="Building and installing a Go project">
-				<h2>Building and installing a Go project</h2>
-			</a>
-
-			<br>
-			melody get PACKAGE  Similar to go get, this command will download, build, and install a specified Go package. The package will be placed into $GOPATH/src directory, however, unlike go get, its dependencies will be placed into the repo&rsquo;s vendor subdirectory. This way, we can keep the global $GOPATH/src clean.
-It is a convenience method for the following procedure:
-git clone <a href="https://PACKAGE">https://PACKAGE</a> $GOPATH/src/PACKAGE cd $GOPATH/src/PACKAGE melody init melody update go install .
-
-			<hr>
-			
-			<a href="https://melody.sh/docs/commands/lint/" title="Validate project dependencies">
-				<h2>Validate project dependencies</h2>
-			</a>
-
-			<br>
-			melody lint  Performs an ever-growing suite of checks on your project&rsquo;s Melody.toml, Melody.lock, and vendor subdirectory to ensure correctness and consistency.
-
-			<hr>
-			
-			<a href="https://melody.sh/docs/commands/outdated/" title="Find outdated dependencies for a project">
-				<h2>Find outdated dependencies for a project</h2>
-			</a>
-
-			<br>
-			melody outdated  Lists all the dependencies of your project that offer newer versions than the ones locked in Melody.lock.
+<p>
 
 			<hr>
 			

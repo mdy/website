@@ -145,13 +145,13 @@
 
 <ul>
     <li class="anchor">
-        <a title="Install Melody" href="https://melody.sh/docs/guides/install/">
+        <a title="Install Melody" href="https://melody.sh/docs/howto/install/">
           Install Melody
         </a>
       </li>
     <li class="anchor">
-        <a title="Starting a new Go project" href="https://melody.sh/docs/guides/usage/">
-          Starting a new Go project
+        <a title="Start a new Go project" href="https://melody.sh/docs/howto/usage/">
+          Start a new Go project
         </a>
       </li>
     </ul>
@@ -163,7 +163,7 @@
 
 <ul>
     <li class="anchor">
-        <a title="Starting a new Go project" href="https://melody.sh/docs/commands/init/">
+        <a title="Set up a new Go project" href="https://melody.sh/docs/commands/init/">
           melody init
         </a>
       </li>
@@ -201,8 +201,8 @@
 
 <ul>
     <li class="anchor">
-        <a title="Project layout" href="https://melody.sh/docs/reference/layout/">
-          Project layout
+        <a title="Go project layout" href="https://melody.sh/docs/reference/layout/">
+          Go project layout
         </a>
       </li>
     <li class="anchor">
@@ -237,9 +237,9 @@
 			<pre><code>melody get PACKAGE
 </code></pre>
 
-<p>Similar to <code>go get</code>, this command will download, build, and install a specified Go package.  The specified package will be placed into <code>$GOPATH/src</code> directory, however, unlike <code>go get</code>, the dependencies will all be placed into the repo&rsquo;s <code>vendor</code> subdirectory. This way, we can keep the global <code>$GOPATH/src</code> clean.</p>
+<p>Similar to <code>go get</code>, this command will download, build, and install a specified Go package.  The package will be placed into <code>$GOPATH/src</code> directory, however, unlike <code>go get</code>, its dependencies will be placed into the repo&rsquo;s <code>vendor</code> subdirectory. This way, we can keep the global <code>$GOPATH/src</code> clean.</p>
 
-<p>It is a convenience method for the following steps:</p>
+<p>It is a convenience method for the following procedure:</p>
 
 <pre><code>git clone https://PACKAGE $GOPATH/src/PACKAGE
 cd $GOPATH/src/PACKAGE
