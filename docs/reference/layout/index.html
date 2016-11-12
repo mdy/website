@@ -157,38 +157,38 @@
     </ul>
 </li>
 
-  <li><a  title="Commands" href="https://melody.sh/docs/">
+  <li><a  title="Commands" href="https://melody.sh/docs/commands">
    Commands
 </a>
 
 <ul>
     <li class="anchor">
-        <a title="Set up a new Go project" href="https://melody.sh/docs/commands/init/">
+        <a title="init: set up a new Go project" href="https://melody.sh/docs/commands/init/">
           melody init
         </a>
       </li>
     <li class="anchor">
-        <a title="Update and download dependencies for a Go project" href="https://melody.sh/docs/commands/update/">
+        <a title="update: download &amp; lock project dependencies" href="https://melody.sh/docs/commands/update/">
           melody update
         </a>
       </li>
     <li class="anchor">
-        <a title="Install dependencies for a Go project" href="https://melody.sh/docs/commands/install/">
+        <a title="install: restore locked dependencies" href="https://melody.sh/docs/commands/install/">
           melody install
         </a>
       </li>
     <li class="anchor">
-        <a title="Building and installing a Go project" href="https://melody.sh/docs/commands/get/">
+        <a title="get: download, build, and install a Go package" href="https://melody.sh/docs/commands/get/">
           melody get
         </a>
       </li>
     <li class="anchor">
-        <a title="Validate project dependencies" href="https://melody.sh/docs/commands/lint/">
+        <a title="lint: validate project configuration" href="https://melody.sh/docs/commands/lint/">
           melody lint
         </a>
       </li>
     <li class="anchor">
-        <a title="Find outdated dependencies for a project" href="https://melody.sh/docs/commands/outdated/">
+        <a title="outdated: find outdated dependencies for a project" href="https://melody.sh/docs/commands/outdated/">
           melody outdated
         </a>
       </li>
@@ -242,7 +242,8 @@
 ├── Melody.lock
 ├── Melody.toml
 ├── main.go
-└── ...
+├── ...
+└── vendor/...
 </code></pre>
 
 <h3 id="melody-toml">Melody.toml</h3>
@@ -252,6 +253,10 @@
 <h3 id="melody-lock">Melody.lock</h3>
 
 <p>The lockfile is auto-generated and should not be modified by hand.  We highly recommend committing this file into your repository to enable repeatable outcome of <code>melody install</code>.</p>
+
+<h3 id="vendor">vendor/&hellip;</h3>
+
+<p>The vendor directory is managed by Melody and will contain all of your dependencies as specified in <code>Melody.toml</code> and locked via <code>Melody.lock</code>. We make no assumptions on whether you want to commit your dependencies into your repository, or restore them via <code>melody install</code>.</p>
 
 
 			<aside class="copyright" role="note">
@@ -268,7 +273,7 @@
 <nav class="pagination" aria-label="Footer">
   <div class="previous">
   
-      <a href="https://melody.sh/docs/commands/outdated/" title="Find outdated dependencies for a project">
+      <a href="https://melody.sh/docs/commands/outdated/" title="outdated: find outdated dependencies for a project">
         <span class="direction">
           Previous
         </span>
@@ -278,7 +283,7 @@
           </div>
           <div class="stretch">
             <div class="title">
-              Find outdated dependencies for a project
+              outdated: find outdated dependencies for a project
             </div>
           </div>
         </div>

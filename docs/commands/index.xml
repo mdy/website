@@ -11,7 +11,7 @@
     <atom:link href="https://melody.sh/docs/commands/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
-      <title>Set up a new Go project</title>
+      <title>init: set up a new Go project</title>
       <link>https://melody.sh/docs/commands/init/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -24,7 +24,7 @@
     </item>
     
     <item>
-      <title>Update and download dependencies for a Go project</title>
+      <title>update: download &amp; lock project dependencies</title>
       <link>https://melody.sh/docs/commands/update/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -42,7 +42,7 @@
     </item>
     
     <item>
-      <title>Install dependencies for a Go project</title>
+      <title>install: restore locked dependencies</title>
       <link>https://melody.sh/docs/commands/install/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -55,7 +55,7 @@
     </item>
     
     <item>
-      <title>Building and installing a Go project</title>
+      <title>get: download, build, and install a Go package</title>
       <link>https://melody.sh/docs/commands/get/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -77,7 +77,7 @@ go install . ./cmd/...
     </item>
     
     <item>
-      <title>Validate project dependencies</title>
+      <title>lint: validate project configuration</title>
       <link>https://melody.sh/docs/commands/lint/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -90,7 +90,7 @@ go install . ./cmd/...
     </item>
     
     <item>
-      <title>Find outdated dependencies for a project</title>
+      <title>outdated: find outdated dependencies for a project</title>
       <link>https://melody.sh/docs/commands/outdated/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       

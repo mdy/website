@@ -20,6 +20,15 @@
 
 &lt;p&gt;&lt;/p&gt;
 
+&lt;p&gt;To quickly install the latest release for Linux or macOS, you can run the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -LH &amp;quot;X-SysInfo: $(uname -a)&amp;quot; https://melody.sh/download | gzip -d &amp;gt; melody
+chmod u+x ./melody
+mv ./melody ~/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which will download one of the following &lt;a href=&#34;https://github.com/mdy/melody/releases&#34;&gt;releases&lt;/a&gt;:&lt;/p&gt;
+
 &lt;div class=&#34;github-releases&#34;&gt;
   
     &lt;script src=&#34;https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js&#34;&gt;&lt;/script&gt;

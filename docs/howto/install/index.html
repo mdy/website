@@ -157,38 +157,38 @@
     </ul>
 </li>
 
-  <li><a  title="Commands" href="https://melody.sh/docs/">
+  <li><a  title="Commands" href="https://melody.sh/docs/commands">
    Commands
 </a>
 
 <ul>
     <li class="anchor">
-        <a title="Set up a new Go project" href="https://melody.sh/docs/commands/init/">
+        <a title="init: set up a new Go project" href="https://melody.sh/docs/commands/init/">
           melody init
         </a>
       </li>
     <li class="anchor">
-        <a title="Update and download dependencies for a Go project" href="https://melody.sh/docs/commands/update/">
+        <a title="update: download &amp; lock project dependencies" href="https://melody.sh/docs/commands/update/">
           melody update
         </a>
       </li>
     <li class="anchor">
-        <a title="Install dependencies for a Go project" href="https://melody.sh/docs/commands/install/">
+        <a title="install: restore locked dependencies" href="https://melody.sh/docs/commands/install/">
           melody install
         </a>
       </li>
     <li class="anchor">
-        <a title="Building and installing a Go project" href="https://melody.sh/docs/commands/get/">
+        <a title="get: download, build, and install a Go package" href="https://melody.sh/docs/commands/get/">
           melody get
         </a>
       </li>
     <li class="anchor">
-        <a title="Validate project dependencies" href="https://melody.sh/docs/commands/lint/">
+        <a title="lint: validate project configuration" href="https://melody.sh/docs/commands/lint/">
           melody lint
         </a>
       </li>
     <li class="anchor">
-        <a title="Find outdated dependencies for a project" href="https://melody.sh/docs/commands/outdated/">
+        <a title="outdated: find outdated dependencies for a project" href="https://melody.sh/docs/commands/outdated/">
           melody outdated
         </a>
       </li>
@@ -237,6 +237,15 @@
 			<p>Binary builds are available in the <a href="https://github.com/mdy/melody/releases">Releases</a> section of the GitHub repo.  Just download and uncompress the Melody executable file into your <code>bin</code> directory. To get the latest unstable features or start contributing, you can also <a href="https://github.com/mdy/melody#building-from-source">build Melody from source</a>.</p>
 
 <p></p>
+
+<p>To quickly install the latest release for Linux or macOS, you can run the following:</p>
+
+<pre><code class="language-bash">curl -LH &quot;X-SysInfo: $(uname -a)&quot; https://melody.sh/download | gzip -d &gt; melody
+chmod u+x ./melody
+mv ./melody ~/bin
+</code></pre>
+
+<p>Which will download one of the following <a href="https://github.com/mdy/melody/releases">releases</a>:</p>
 
 <div class="github-releases">
   

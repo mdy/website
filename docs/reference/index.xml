@@ -24,7 +24,8 @@
 ├── Melody.lock
 ├── Melody.toml
 ├── main.go
-└── ...
+├── ...
+└── vendor/...
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;melody-toml&#34;&gt;Melody.toml&lt;/h3&gt;
@@ -34,6 +35,10 @@
 &lt;h3 id=&#34;melody-lock&#34;&gt;Melody.lock&lt;/h3&gt;
 
 &lt;p&gt;The lockfile is auto-generated and should not be modified by hand.  We highly recommend committing this file into your repository to enable repeatable outcome of &lt;code&gt;melody install&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;vendor&#34;&gt;vendor/&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;The vendor directory is managed by Melody and will contain all of your dependencies as specified in &lt;code&gt;Melody.toml&lt;/code&gt; and locked via &lt;code&gt;Melody.lock&lt;/code&gt;. We make no assumptions on whether you want to commit your dependencies into your repository, or restore them via &lt;code&gt;melody install&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     

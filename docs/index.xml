@@ -20,6 +20,15 @@
 
 &lt;p&gt;&lt;/p&gt;
 
+&lt;p&gt;To quickly install the latest release for Linux or macOS, you can run the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;curl -LH &amp;quot;X-SysInfo: $(uname -a)&amp;quot; https://melody.sh/download | gzip -d &amp;gt; melody
+chmod u+x ./melody
+mv ./melody ~/bin
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Which will download one of the following &lt;a href=&#34;https://github.com/mdy/melody/releases&#34;&gt;releases&lt;/a&gt;:&lt;/p&gt;
+
 &lt;div class=&#34;github-releases&#34;&gt;
   
     &lt;script src=&#34;https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js&#34;&gt;&lt;/script&gt;
@@ -91,7 +100,7 @@
     </item>
     
     <item>
-      <title>Set up a new Go project</title>
+      <title>init: set up a new Go project</title>
       <link>https://melody.sh/docs/commands/init/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -104,7 +113,7 @@
     </item>
     
     <item>
-      <title>Update and download dependencies for a Go project</title>
+      <title>update: download &amp; lock project dependencies</title>
       <link>https://melody.sh/docs/commands/update/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -122,7 +131,7 @@
     </item>
     
     <item>
-      <title>Install dependencies for a Go project</title>
+      <title>install: restore locked dependencies</title>
       <link>https://melody.sh/docs/commands/install/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -135,7 +144,7 @@
     </item>
     
     <item>
-      <title>Building and installing a Go project</title>
+      <title>get: download, build, and install a Go package</title>
       <link>https://melody.sh/docs/commands/get/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -157,7 +166,7 @@ go install . ./cmd/...
     </item>
     
     <item>
-      <title>Validate project dependencies</title>
+      <title>lint: validate project configuration</title>
       <link>https://melody.sh/docs/commands/lint/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -170,7 +179,7 @@ go install . ./cmd/...
     </item>
     
     <item>
-      <title>Find outdated dependencies for a project</title>
+      <title>outdated: find outdated dependencies for a project</title>
       <link>https://melody.sh/docs/commands/outdated/</link>
       <pubDate>Tue, 08 Mar 2016 21:07:13 +0100</pubDate>
       
@@ -196,7 +205,8 @@ go install . ./cmd/...
 ├── Melody.lock
 ├── Melody.toml
 ├── main.go
-└── ...
+├── ...
+└── vendor/...
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;h3 id=&#34;melody-toml&#34;&gt;Melody.toml&lt;/h3&gt;
@@ -206,6 +216,10 @@ go install . ./cmd/...
 &lt;h3 id=&#34;melody-lock&#34;&gt;Melody.lock&lt;/h3&gt;
 
 &lt;p&gt;The lockfile is auto-generated and should not be modified by hand.  We highly recommend committing this file into your repository to enable repeatable outcome of &lt;code&gt;melody install&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&#34;vendor&#34;&gt;vendor/&amp;hellip;&lt;/h3&gt;
+
+&lt;p&gt;The vendor directory is managed by Melody and will contain all of your dependencies as specified in &lt;code&gt;Melody.toml&lt;/code&gt; and locked via &lt;code&gt;Melody.lock&lt;/code&gt;. We make no assumptions on whether you want to commit your dependencies into your repository, or restore them via &lt;code&gt;melody install&lt;/code&gt;.&lt;/p&gt;
 </description>
     </item>
     
