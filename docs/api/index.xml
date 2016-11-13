@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Apis on melodyAPI documentation</title>
+    <title>Apis on Go Repository Documentation</title>
     <link>https://melody.sh/docs/api/index.xml</link>
-    <description>Recent content in Apis on melodyAPI documentation</description>
+    <description>Recent content in Apis on Go Repository Documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>melodyAPI docs</copyright>
+    <copyright>melody docs</copyright>
     <lastBuildDate>Tue, 08 Mar 2016 21:07:13 +0100</lastBuildDate>
     <atom:link href="https://melody.sh/docs/api/index.xml" rel="self" type="application/rss+xml" />
     
@@ -36,7 +36,7 @@
 &lt;/figure&gt;
 
 
-&lt;p&gt;melodyAPI is a backend platform that can save you hours of work and wait by
+&lt;p&gt;melodyRepo is a backend platform that can save you hours of work and wait by
 caching Go repositories and preprocessing common analysis tasks to expose
 underlying metadata via a GraphQL API.  By caching much of this data,
 checking for repository updates or listing package dependencies take a few
@@ -66,7 +66,7 @@ compatibility.&lt;/p&gt;&lt;/li&gt;
 
 &lt;h2 id=&#34;project-status&#34;&gt;Project Status&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;Early Preview&lt;/strong&gt; &amp;ndash; melodyAPI is not just another academic exercise; it
+&lt;p&gt;&lt;strong&gt;Early Preview&lt;/strong&gt; &amp;ndash; melodyRepo is not just another academic exercise; it
 grew out of an in-house project that serves real development needs, and we will
 continue active development to make it more useful for our team, and now to
 the greater developer community.&lt;/p&gt;
@@ -83,7 +83,7 @@ the greater developer community.&lt;/p&gt;
 
 &lt;h2 id=&#34;endpoint&#34;&gt;Endpoint&lt;/h2&gt;
 
-&lt;p&gt;melodyAPI is available for developer preview at the following endpoint:&lt;/p&gt;
+&lt;p&gt;melodyRepo is available for developer preview at the following endpoint:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-sh&#34;&gt;https://api.melody.sh/graphql
 &lt;/code&gt;&lt;/pre&gt;
@@ -113,7 +113,7 @@ the greater developer community.&lt;/p&gt;
 
 &lt;h2 id=&#34;parsing-responses&#34;&gt;Parsing responses&lt;/h2&gt;
 
-&lt;p&gt;melodyAPI will return query results in JSON format:&lt;/p&gt;
+&lt;p&gt;melodyRepo will return query results in JSON format:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-json&#34;&gt;{
   &amp;quot;data&amp;quot;: {
@@ -160,7 +160,7 @@ the greater developer community.&lt;/p&gt;
 
 &lt;div class=&#34;admonition note&#34;&gt;
 &lt;p class=&#34;admonition-title&#34;&gt;Package names&lt;/p&gt;
-&lt;p&gt;Please note that melodyAPI indexes packages by the name that you use in your &amp;ldquo;import&amp;rdquo;
+&lt;p&gt;Please note that melodyRepo indexes packages by the name that you use in your &amp;ldquo;import&amp;rdquo;
 statements, not the path to the repo.  If a repository has no top-level package or
 it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package name will return a not-found error.&lt;/p&gt;
 &lt;/div&gt;
