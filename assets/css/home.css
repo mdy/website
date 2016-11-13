@@ -28,6 +28,8 @@ section.promo .intro a {
 
 section.about {
   padding-bottom: 20px; }
+  section.about img {
+    max-width: 95%; }
   section.about h2.title {
     margin: -20px 0 30px; }
   section.about .about-items {
