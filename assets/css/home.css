@@ -23,6 +23,10 @@ body {
     top: 33px;
     right: 29px; }
 
+.header .main-nav .nav .nav-item .vbadge {
+  position: relative;
+  bottom: 1px; }
+
 section.promo .intro a {
   color: white; }
 
