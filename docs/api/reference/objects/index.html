@@ -211,60 +211,24 @@
 
 <p>Reserved for future use</p>
 
-<h2 id="DependencyConnection">DependencyConnection</h2>
-
-<pre><code class="language-graphql">type DependencyConnection {
-  edges: [DependencyEdge]
-  pageInfo: PageInfo!
-}
-</code></pre>
-
-<p>A connection to a list of dependencies.</p>
-
-<h3 id="fields-1">Fields</h3>
-
-<h4 id="edges-dependencyedge-dependencyedge">edges ([<a href="#DependencyEdge">DependencyEdge</a>])</h4>
-
-<p>Edges connecting to the listed Dependency nodes</p>
-
-<h4 id="pageinfo-pageinfo-pageinfo">pageInfo (<a href="#PageInfo">PageInfo</a>!)</h4>
-
-<p>Pagination metadata for this connection</p>
-
-<h2 id="DependencyEdge">DependencyEdge</h2>
-
-<pre><code class="language-graphql">type DependencyEdge {
-  node: Dependency
-  cursor: String!
-}
-</code></pre>
-
-<p>An edge in a Dependency connection</p>
-
-<h3 id="fields-2">Fields</h3>
-
-<h4 id="cursor-string">cursor (String!)</h4>
-
-<p>Pagination cursor</p>
-
-<h4 id="node-dependency-dependency">node (<a href="#Dependency">Dependency</a>)</h4>
-
-<p>Dependency object connected by this edge</p>
-
 <h2 id="Package">Package</h2>
 
 <pre><code class="language-graphql">type Package {
   name: String
+  versionList: [Version]
   version(version: String, revision: String): Version
-  versions(first: Int, last: Int, before: String, after: String): VersionConnection
 }
 </code></pre>
 
-<h3 id="fields-3">Fields</h3>
+<h3 id="fields-1">Fields</h3>
 
 <h4 id="name-string-1">name (String)</h4>
 
 <p>Package name as specified in the <code>import</code> statement</p>
+
+<h4 id="versionlist-version-version">versionList (<a href="#Version">[Version]</a>)</h4>
+
+<p>List all tagged versions of this package.</p>
 
 <h4 id="version-version-version">version (<a href="#Version">Version</a>)</h4>
 
@@ -294,86 +258,17 @@
 </tbody>
 </table>
 
-<h4 id="versions-versionconnection-versionconnection">versions (<a href="#VersionConnection">VersionConnection</a>)</h4>
-
-<p>List all tagged and latest auto-generated versions of this package.</p>
-
-<table>
-<thead>
-<tr>
-<th>Argument</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>before</td>
-<td>String</td>
-<td>Cursor for pagination</td>
-</tr>
-
-<tr>
-<td>after</td>
-<td>String</td>
-<td>Cursor for pagination</td>
-</tr>
-
-<tr>
-<td>first</td>
-<td>Int</td>
-<td>Page size</td>
-</tr>
-
-<tr>
-<td>last</td>
-<td>Int</td>
-<td>Page size</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="PageInfo">PageInfo</h2>
-
-<pre><code class="language-graphql">type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-</code></pre>
-
-<p>Information about pagination in a connection.</p>
-
-<h3 id="fields-4">Fields</h3>
-
-<h4 id="hasnextpage-boolean">hasNextPage (Boolean!)</h4>
-
-<p>Next page available</p>
-
-<h4 id="haspreviouspage-boolean">hasPreviousPage (Boolean!)</h4>
-
-<p>Previous page available</p>
-
-<h4 id="startcursor-string">startCursor (String)</h4>
-
-<p>Cursor for first item of this page</p>
-
-<h4 id="endcursor-string">endCursor (String)</h4>
-
-<p>Cursor for last item of this page</p>
-
 <h2 id="Release">Release</h2>
 
 <pre><code class="language-graphql">type Release {
   name: String
   version: String
+  revision: String
   url: String
 }
 </code></pre>
 
-<h3 id="fields-5">Fields</h3>
+<h3 id="fields-2">Fields</h3>
 
 <h4 id="name-string-2">name (String)</h4>
 
@@ -382,6 +277,10 @@
 <h4 id="version-string">version (String)</h4>
 
 <p>Convenience accessor to the parent <a href="#Version">Version</a> version</p>
+
+<h4 id="revision-string">revision (String)</h4>
+
+<p>Unique ObjectID of this version from the underlying VCS</p>
 
 <h4 id="url-string">url (String)</h4>
 
@@ -393,11 +292,11 @@
   name: String
   version: String
   release: Release
-  dependencies(after: String, first: Int, last: Int, before: String): DependencyConnection
+  dependencyList: [Dependency]
 }
 </code></pre>
 
-<h3 id="fields-6">Fields</h3>
+<h3 id="fields-3">Fields</h3>
 
 <h4 id="name-string-3">name (String)</h4>
 
@@ -411,85 +310,9 @@
 
 <p>Details about the archive needed to install this package</p>
 
-<h4 id="dependencies-dependencyconnection-dependencyconnection">dependencies (<a href="#DependencyConnection">DependencyConnection</a>)</h4>
+<h4 id="dependencylist-dependency-dependency">dependencyList (<a href="#Dependency">[Dependency]</a>)</h4>
 
-<p>A RelayConnection to a list of dependencies that are imported by this version.</p>
-
-<table>
-<thead>
-<tr>
-<th>Argument</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>before</td>
-<td>String</td>
-<td>Cursor for pagination</td>
-</tr>
-
-<tr>
-<td>after</td>
-<td>String</td>
-<td>Cursor for pagination</td>
-</tr>
-
-<tr>
-<td>first</td>
-<td>Int</td>
-<td>Page size</td>
-</tr>
-
-<tr>
-<td>last</td>
-<td>Int</td>
-<td>Page size</td>
-</tr>
-</tbody>
-</table>
-
-<h2 id="VersionConnection">VersionConnection</h2>
-
-<p>A connection to a list of items.</p>
-
-<pre><code class="language-graphql">type VersionConnection {
-  pageInfo: PageInfo!
-  edges: [VersionEdge]
-}
-</code></pre>
-
-<h3 id="fields-7">Fields</h3>
-
-<h4 id="edges-versionedge-versionedge">edges ([<a href="#VersionEdge">VersionEdge</a>])</h4>
-
-<p>Edges connecting to the listed Version nodes</p>
-
-<h4 id="pageinfo-pageinfo-pageinfo-1">pageInfo (<a href="#PageInfo">PageInfo</a>!)</h4>
-
-<p>Pagination metadata for this connection</p>
-
-<h2 id="VersionEdge">VersionEdge</h2>
-
-<pre><code class="language-graphql">type VersionEdge {
-  node: Version
-  cursor: String!
-}
-</code></pre>
-
-<p>An edge in a Version connection</p>
-
-<h3 id="fields-8">Fields</h3>
-
-<h4 id="cursor-string-1">cursor (String!)</h4>
-
-<p>Pagination cursor</p>
-
-<h4 id="node-version-version">node (<a href="#Version">Version</a>)</h4>
-
-<p>Version object connected by this edge</p>
+<p>List of dependencies that are imported by this version.</p>
 
 
 			<aside class="copyright" role="note">

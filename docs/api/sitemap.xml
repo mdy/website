@@ -2,11 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://melody.sh/docs/</loc>
-    <lastmod>2016-03-09T00:11:02+01:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://melody.sh/docs/api/getting-started/</loc>
     <lastmod>2016-03-09T00:11:02+01:00</lastmod>
   </url>
@@ -29,6 +24,18 @@
   <url>
     <loc>https://melody.sh/docs/api/</loc>
     <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://melody.sh/docs/api/</loc>
+    <lastmod>2016-03-08T21:07:13+01:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://melody.sh/docs/</loc>
+    <lastmod>2016-03-09T00:11:02+01:00</lastmod>
+    <priority>0</priority>
   </url>
   
 </urlset>

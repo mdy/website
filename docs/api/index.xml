@@ -198,60 +198,24 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
 
 &lt;p&gt;Reserved for future use&lt;/p&gt;
 
-&lt;h2 id=&#34;DependencyConnection&#34;&gt;DependencyConnection&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type DependencyConnection {
-  edges: [DependencyEdge]
-  pageInfo: PageInfo!
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;A connection to a list of dependencies.&lt;/p&gt;
-
-&lt;h3 id=&#34;fields-1&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;edges-dependencyedge-dependencyedge&#34;&gt;edges ([&lt;a href=&#34;#DependencyEdge&#34;&gt;DependencyEdge&lt;/a&gt;])&lt;/h4&gt;
-
-&lt;p&gt;Edges connecting to the listed Dependency nodes&lt;/p&gt;
-
-&lt;h4 id=&#34;pageinfo-pageinfo-pageinfo&#34;&gt;pageInfo (&lt;a href=&#34;#PageInfo&#34;&gt;PageInfo&lt;/a&gt;!)&lt;/h4&gt;
-
-&lt;p&gt;Pagination metadata for this connection&lt;/p&gt;
-
-&lt;h2 id=&#34;DependencyEdge&#34;&gt;DependencyEdge&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type DependencyEdge {
-  node: Dependency
-  cursor: String!
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;An edge in a Dependency connection&lt;/p&gt;
-
-&lt;h3 id=&#34;fields-2&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;cursor-string&#34;&gt;cursor (String!)&lt;/h4&gt;
-
-&lt;p&gt;Pagination cursor&lt;/p&gt;
-
-&lt;h4 id=&#34;node-dependency-dependency&#34;&gt;node (&lt;a href=&#34;#Dependency&#34;&gt;Dependency&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;Dependency object connected by this edge&lt;/p&gt;
-
 &lt;h2 id=&#34;Package&#34;&gt;Package&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Package {
   name: String
+  versionList: [Version]
   version(version: String, revision: String): Version
-  versions(first: Int, last: Int, before: String, after: String): VersionConnection
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;fields-3&#34;&gt;Fields&lt;/h3&gt;
+&lt;h3 id=&#34;fields-1&#34;&gt;Fields&lt;/h3&gt;
 
 &lt;h4 id=&#34;name-string-1&#34;&gt;name (String)&lt;/h4&gt;
 
 &lt;p&gt;Package name as specified in the &lt;code&gt;import&lt;/code&gt; statement&lt;/p&gt;
+
+&lt;h4 id=&#34;versionlist-version-version&#34;&gt;versionList (&lt;a href=&#34;#Version&#34;&gt;[Version]&lt;/a&gt;)&lt;/h4&gt;
+
+&lt;p&gt;List all tagged versions of this package.&lt;/p&gt;
 
 &lt;h4 id=&#34;version-version-version&#34;&gt;version (&lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt;)&lt;/h4&gt;
 
@@ -281,86 +245,17 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h4 id=&#34;versions-versionconnection-versionconnection&#34;&gt;versions (&lt;a href=&#34;#VersionConnection&#34;&gt;VersionConnection&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;List all tagged and latest auto-generated versions of this package.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Argument&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;before&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Cursor for pagination&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;after&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Cursor for pagination&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;first&lt;/td&gt;
-&lt;td&gt;Int&lt;/td&gt;
-&lt;td&gt;Page size&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;last&lt;/td&gt;
-&lt;td&gt;Int&lt;/td&gt;
-&lt;td&gt;Page size&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;PageInfo&#34;&gt;PageInfo&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Information about pagination in a connection.&lt;/p&gt;
-
-&lt;h3 id=&#34;fields-4&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;hasnextpage-boolean&#34;&gt;hasNextPage (Boolean!)&lt;/h4&gt;
-
-&lt;p&gt;Next page available&lt;/p&gt;
-
-&lt;h4 id=&#34;haspreviouspage-boolean&#34;&gt;hasPreviousPage (Boolean!)&lt;/h4&gt;
-
-&lt;p&gt;Previous page available&lt;/p&gt;
-
-&lt;h4 id=&#34;startcursor-string&#34;&gt;startCursor (String)&lt;/h4&gt;
-
-&lt;p&gt;Cursor for first item of this page&lt;/p&gt;
-
-&lt;h4 id=&#34;endcursor-string&#34;&gt;endCursor (String)&lt;/h4&gt;
-
-&lt;p&gt;Cursor for last item of this page&lt;/p&gt;
-
 &lt;h2 id=&#34;Release&#34;&gt;Release&lt;/h2&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type Release {
   name: String
   version: String
+  revision: String
   url: String
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;fields-5&#34;&gt;Fields&lt;/h3&gt;
+&lt;h3 id=&#34;fields-2&#34;&gt;Fields&lt;/h3&gt;
 
 &lt;h4 id=&#34;name-string-2&#34;&gt;name (String)&lt;/h4&gt;
 
@@ -369,6 +264,10 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
 &lt;h4 id=&#34;version-string&#34;&gt;version (String)&lt;/h4&gt;
 
 &lt;p&gt;Convenience accessor to the parent &lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt; version&lt;/p&gt;
+
+&lt;h4 id=&#34;revision-string&#34;&gt;revision (String)&lt;/h4&gt;
+
+&lt;p&gt;Unique ObjectID of this version from the underlying VCS&lt;/p&gt;
 
 &lt;h4 id=&#34;url-string&#34;&gt;url (String)&lt;/h4&gt;
 
@@ -380,11 +279,11 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
   name: String
   version: String
   release: Release
-  dependencies(after: String, first: Int, last: Int, before: String): DependencyConnection
+  dependencyList: [Dependency]
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;fields-6&#34;&gt;Fields&lt;/h3&gt;
+&lt;h3 id=&#34;fields-3&#34;&gt;Fields&lt;/h3&gt;
 
 &lt;h4 id=&#34;name-string-3&#34;&gt;name (String)&lt;/h4&gt;
 
@@ -398,85 +297,9 @@ it&amp;rsquo;s named &amp;ldquo;main&amp;rdquo;, using its path as a package nam
 
 &lt;p&gt;Details about the archive needed to install this package&lt;/p&gt;
 
-&lt;h4 id=&#34;dependencies-dependencyconnection-dependencyconnection&#34;&gt;dependencies (&lt;a href=&#34;#DependencyConnection&#34;&gt;DependencyConnection&lt;/a&gt;)&lt;/h4&gt;
+&lt;h4 id=&#34;dependencylist-dependency-dependency&#34;&gt;dependencyList (&lt;a href=&#34;#Dependency&#34;&gt;[Dependency]&lt;/a&gt;)&lt;/h4&gt;
 
-&lt;p&gt;A RelayConnection to a list of dependencies that are imported by this version.&lt;/p&gt;
-
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Argument&lt;/th&gt;
-&lt;th&gt;Type&lt;/th&gt;
-&lt;th&gt;Description&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;before&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Cursor for pagination&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;after&lt;/td&gt;
-&lt;td&gt;String&lt;/td&gt;
-&lt;td&gt;Cursor for pagination&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;first&lt;/td&gt;
-&lt;td&gt;Int&lt;/td&gt;
-&lt;td&gt;Page size&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td&gt;last&lt;/td&gt;
-&lt;td&gt;Int&lt;/td&gt;
-&lt;td&gt;Page size&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&#34;VersionConnection&#34;&gt;VersionConnection&lt;/h2&gt;
-
-&lt;p&gt;A connection to a list of items.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type VersionConnection {
-  pageInfo: PageInfo!
-  edges: [VersionEdge]
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;h3 id=&#34;fields-7&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;edges-versionedge-versionedge&#34;&gt;edges ([&lt;a href=&#34;#VersionEdge&#34;&gt;VersionEdge&lt;/a&gt;])&lt;/h4&gt;
-
-&lt;p&gt;Edges connecting to the listed Version nodes&lt;/p&gt;
-
-&lt;h4 id=&#34;pageinfo-pageinfo-pageinfo-1&#34;&gt;pageInfo (&lt;a href=&#34;#PageInfo&#34;&gt;PageInfo&lt;/a&gt;!)&lt;/h4&gt;
-
-&lt;p&gt;Pagination metadata for this connection&lt;/p&gt;
-
-&lt;h2 id=&#34;VersionEdge&#34;&gt;VersionEdge&lt;/h2&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-graphql&#34;&gt;type VersionEdge {
-  node: Version
-  cursor: String!
-}
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;An edge in a Version connection&lt;/p&gt;
-
-&lt;h3 id=&#34;fields-8&#34;&gt;Fields&lt;/h3&gt;
-
-&lt;h4 id=&#34;cursor-string-1&#34;&gt;cursor (String!)&lt;/h4&gt;
-
-&lt;p&gt;Pagination cursor&lt;/p&gt;
-
-&lt;h4 id=&#34;node-version-version&#34;&gt;node (&lt;a href=&#34;#Version&#34;&gt;Version&lt;/a&gt;)&lt;/h4&gt;
-
-&lt;p&gt;Version object connected by this edge&lt;/p&gt;
+&lt;p&gt;List of dependencies that are imported by this version.&lt;/p&gt;
 </description>
     </item>
     
